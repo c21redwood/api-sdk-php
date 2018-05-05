@@ -85,6 +85,7 @@ All URIs are relative to *https://localhost/api/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**geocodePost**](docs/Api/DefaultApi.md#geocodepost) | **POST** /geocode | Geocode the given address
+*DefaultApi* | [**officesGet**](docs/Api/DefaultApi.md#officesget) | **GET** /offices | 
 *DefaultApi* | [**ssoAppsGet**](docs/Api/DefaultApi.md#ssoappsget) | **GET** /sso/apps | Get a list of the SSO apps
 
 
@@ -92,6 +93,7 @@ Class | Method | HTTP request | Description
 
  - [Error](docs/Model/Error.md)
  - [InlineResponse401](docs/Model/InlineResponse401.md)
+ - [Office](docs/Model/Office.md)
  - [Place](docs/Model/Place.md)
  - [SsoApp](docs/Model/SsoApp.md)
  - [User](docs/Model/User.md)

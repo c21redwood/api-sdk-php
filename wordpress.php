@@ -96,3 +96,19 @@ function redwood_sso_apps($flush = false) : ?array
     return $apps;
   });
 }
+
+function redwood_offices($flush = false) : ?array
+{
+  $cacheKey = 'redwood_offices';
+
+  if ($flush) {
+    cache_forget($cacheKey);
+  }
+
+  return cache_remember($cacheKey, 5, function() {
+    if (!$offices = redwood()->officesGet()) {
+      throw new \Exception("Failed to load offices from Redwood API");
+    }
+    return $offices;
+  });
+}

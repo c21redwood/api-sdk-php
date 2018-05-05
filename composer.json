@@ -29,8 +29,7 @@
         "friendsofphp/php-cs-fixer": "~1.12"
     },
     "autoload": {
-        "psr-4": { "Redwood\\" : "lib/" },
-        "files": [ "wordpress.php" ]
+        "psr-4": { "Redwood\\" : "lib/" }
     },
     "autoload-dev": {
         "psr-4": { "Redwood\\" : "test/" }
