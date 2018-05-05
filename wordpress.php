@@ -62,7 +62,7 @@ function redwood() : Redwood\Client\DefaultApi
 
   if (empty($api)) {
     $config = Redwood\Configuration::getDefaultConfiguration()
-      ->setHost('https://api.c21redwood.test/api/v1')
+      ->setHost(env('REDWOOD_API_HOST'))
       ->setAccessToken(redwood_api_access_token());
 
     $api = new Redwood\Client\DefaultApi(
