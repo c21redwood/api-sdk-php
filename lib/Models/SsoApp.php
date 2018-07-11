@@ -59,7 +59,8 @@ class SsoApp implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'icon' => 'string',
         'name' => 'string',
-        'url' => 'string'
+        'url' => 'string',
+        'link' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class SsoApp implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'icon' => null,
         'name' => null,
-        'url' => null
+        'url' => null,
+        'link' => null
     ];
 
     /**
@@ -102,7 +104,8 @@ class SsoApp implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'icon' => 'icon',
         'name' => 'name',
-        'url' => 'url'
+        'url' => 'url',
+        'link' => 'link'
     ];
 
     /**
@@ -113,7 +116,8 @@ class SsoApp implements ModelInterface, ArrayAccess
     protected static $setters = [
         'icon' => 'setIcon',
         'name' => 'setName',
-        'url' => 'setUrl'
+        'url' => 'setUrl',
+        'link' => 'setLink'
     ];
 
     /**
@@ -124,7 +128,8 @@ class SsoApp implements ModelInterface, ArrayAccess
     protected static $getters = [
         'icon' => 'getIcon',
         'name' => 'getName',
-        'url' => 'getUrl'
+        'url' => 'getUrl',
+        'link' => 'getLink'
     ];
 
     /**
@@ -190,6 +195,7 @@ class SsoApp implements ModelInterface, ArrayAccess
         $this->container['icon'] = isset($data['icon']) ? $data['icon'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['link'] = isset($data['link']) ? $data['link'] : null;
     }
 
     /**
@@ -285,6 +291,30 @@ class SsoApp implements ModelInterface, ArrayAccess
     public function setUrl($url)
     {
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->container['link'];
+    }
+
+    /**
+     * Sets link
+     *
+     * @param string $link link
+     *
+     * @return $this
+     */
+    public function setLink($link)
+    {
+        $this->container['link'] = $link;
 
         return $this;
     }

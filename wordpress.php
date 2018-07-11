@@ -97,6 +97,25 @@ function redwood_sso_apps($flush = false) : ?array
   });
 }
 
+/**
+ * Given an app URL (the unique identifier), find the app, or return false
+ * @param $url
+ * @param bool $flush
+ * @return bool|\Redwood\Models\SsoApp
+ */
+function redwood_get_sso_app_by_url($url, $flush = false)
+{
+  if ($apps = redwood_sso_apps($flush)) {
+    foreach($apps as $app) {
+      if ($app['url'] === $url) {
+        return $app;
+      }
+    }
+  }
+
+  return false;
+}
+
 function redwood_offices($flush = false) : ?array
 {
   $cacheKey = 'redwood_offices';
