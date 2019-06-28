@@ -1,6 +1,6 @@
 <?php
 /**
- * Guide
+ * Topic
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Redwood\ObjectSerializer;
 
 /**
- * Guide Class Doc Comment
+ * Topic Class Doc Comment
  *
  * @category Class
  * @package  Redwood
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Guide implements ModelInterface, ArrayAccess
+class Topic implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class Guide implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Guide';
+    protected static $swaggerModelName = 'Topic';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,8 @@ class Guide implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'int',
-'guides_id' => 'string',
-'guides_connection' => 'string',
-'title' => 'string',
-'link' => 'string',
-'topics' => '\Redwood\Models\Topic[]'    ];
+'name' => 'string',
+'link' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -70,11 +67,8 @@ class Guide implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'id' => null,
-'guides_id' => null,
-'guides_connection' => null,
-'title' => null,
-'link' => null,
-'topics' => null    ];
+'name' => null,
+'link' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -104,11 +98,8 @@ class Guide implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
-'guides_id' => 'guides_id',
-'guides_connection' => 'guides_connection',
-'title' => 'title',
-'link' => 'link',
-'topics' => 'topics'    ];
+'name' => 'name',
+'link' => 'link'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -117,11 +108,8 @@ class Guide implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
-'guides_id' => 'setGuidesId',
-'guides_connection' => 'setGuidesConnection',
-'title' => 'setTitle',
-'link' => 'setLink',
-'topics' => 'setTopics'    ];
+'name' => 'setName',
+'link' => 'setLink'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -130,11 +118,8 @@ class Guide implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
-'guides_id' => 'getGuidesId',
-'guides_connection' => 'getGuidesConnection',
-'title' => 'getTitle',
-'link' => 'getLink',
-'topics' => 'getTopics'    ];
+'name' => 'getName',
+'link' => 'getLink'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -195,11 +180,8 @@ class Guide implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['guides_id'] = isset($data['guides_id']) ? $data['guides_id'] : null;
-        $this->container['guides_connection'] = isset($data['guides_connection']) ? $data['guides_connection'] : null;
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['link'] = isset($data['link']) ? $data['link'] : null;
-        $this->container['topics'] = isset($data['topics']) ? $data['topics'] : null;
     }
 
     /**
@@ -251,73 +233,25 @@ class Guide implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets guides_id
+     * Gets name
      *
      * @return string
      */
-    public function getGuidesId()
+    public function getName()
     {
-        return $this->container['guides_id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets guides_id
+     * Sets name
      *
-     * @param string $guides_id guides_id
+     * @param string $name name
      *
      * @return $this
      */
-    public function setGuidesId($guides_id)
+    public function setName($name)
     {
-        $this->container['guides_id'] = $guides_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets guides_connection
-     *
-     * @return string
-     */
-    public function getGuidesConnection()
-    {
-        return $this->container['guides_connection'];
-    }
-
-    /**
-     * Sets guides_connection
-     *
-     * @param string $guides_connection guides_connection
-     *
-     * @return $this
-     */
-    public function setGuidesConnection($guides_connection)
-    {
-        $this->container['guides_connection'] = $guides_connection;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string $title title
-     *
-     * @return $this
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
+        $this->container['name'] = $name;
 
         return $this;
     }
@@ -342,30 +276,6 @@ class Guide implements ModelInterface, ArrayAccess
     public function setLink($link)
     {
         $this->container['link'] = $link;
-
-        return $this;
-    }
-
-    /**
-     * Gets topics
-     *
-     * @return \Redwood\Models\Topic[]
-     */
-    public function getTopics()
-    {
-        return $this->container['topics'];
-    }
-
-    /**
-     * Sets topics
-     *
-     * @param \Redwood\Models\Topic[] $topics topics
-     *
-     * @return $this
-     */
-    public function setTopics($topics)
-    {
-        $this->container['topics'] = $topics;
 
         return $this;
     }

@@ -144,7 +144,7 @@ function redwood_get_guide_by_connection($connection, $id, $flush = false)
   $cacheKey = sprintf('guide_%s_%s', $connection, $id);
 
   if ($flush) {
-    cache_forge($cacheKey);
+    cache_forget($cacheKey);
   }
 
   return cache_remember($cacheKey, 5, function() use ($connection, $id) {

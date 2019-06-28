@@ -150,6 +150,7 @@ Class | Method | HTTP request | Description
  - [Office](docs/Model/Office.md)
  - [Place](docs/Model/Place.md)
  - [SsoApp](docs/Model/SsoApp.md)
+ - [Topic](docs/Model/Topic.md)
  - [User](docs/Model/User.md)
 
 ## Documentation For Authorization
