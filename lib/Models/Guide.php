@@ -1,6 +1,6 @@
 <?php
 /**
- * SsoApp
+ * Guide
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Redwood\ObjectSerializer;
 
 /**
- * SsoApp Class Doc Comment
+ * Guide Class Doc Comment
  *
  * @category Class
  * @package  Redwood
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SsoApp implements ModelInterface, ArrayAccess
+class Guide implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class SsoApp implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'SsoApp';
+    protected static $swaggerModelName = 'Guide';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,9 +56,10 @@ class SsoApp implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'icon' => 'string',
-'name' => 'string',
-'url' => 'string',
+        'id' => 'int',
+'guides_id' => 'string',
+'guides_connection' => 'string',
+'title' => 'string',
 'link' => 'string'    ];
 
     /**
@@ -67,9 +68,10 @@ class SsoApp implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'icon' => null,
-'name' => null,
-'url' => null,
+        'id' => null,
+'guides_id' => null,
+'guides_connection' => null,
+'title' => null,
 'link' => null    ];
 
     /**
@@ -99,9 +101,10 @@ class SsoApp implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'icon' => 'icon',
-'name' => 'name',
-'url' => 'url',
+        'id' => 'id',
+'guides_id' => 'guides_id',
+'guides_connection' => 'guides_connection',
+'title' => 'title',
 'link' => 'link'    ];
 
     /**
@@ -110,9 +113,10 @@ class SsoApp implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'icon' => 'setIcon',
-'name' => 'setName',
-'url' => 'setUrl',
+        'id' => 'setId',
+'guides_id' => 'setGuidesId',
+'guides_connection' => 'setGuidesConnection',
+'title' => 'setTitle',
 'link' => 'setLink'    ];
 
     /**
@@ -121,9 +125,10 @@ class SsoApp implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'icon' => 'getIcon',
-'name' => 'getName',
-'url' => 'getUrl',
+        'id' => 'getId',
+'guides_id' => 'getGuidesId',
+'guides_connection' => 'getGuidesConnection',
+'title' => 'getTitle',
 'link' => 'getLink'    ];
 
     /**
@@ -184,9 +189,10 @@ class SsoApp implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['icon'] = isset($data['icon']) ? $data['icon'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['guides_id'] = isset($data['guides_id']) ? $data['guides_id'] : null;
+        $this->container['guides_connection'] = isset($data['guides_connection']) ? $data['guides_connection'] : null;
+        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
         $this->container['link'] = isset($data['link']) ? $data['link'] : null;
     }
 
@@ -215,73 +221,97 @@ class SsoApp implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets icon
+     * Gets id
      *
-     * @return string
+     * @return int
      */
-    public function getIcon()
+    public function getId()
     {
-        return $this->container['icon'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets icon
+     * Sets id
      *
-     * @param string $icon icon
+     * @param int $id id
      *
      * @return $this
      */
-    public function setIcon($icon)
+    public function setId($id)
     {
-        $this->container['icon'] = $icon;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets guides_id
      *
      * @return string
      */
-    public function getName()
+    public function getGuidesId()
     {
-        return $this->container['name'];
+        return $this->container['guides_id'];
     }
 
     /**
-     * Sets name
+     * Sets guides_id
      *
-     * @param string $name name
+     * @param string $guides_id guides_id
      *
      * @return $this
      */
-    public function setName($name)
+    public function setGuidesId($guides_id)
     {
-        $this->container['name'] = $name;
+        $this->container['guides_id'] = $guides_id;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets guides_connection
      *
      * @return string
      */
-    public function getUrl()
+    public function getGuidesConnection()
     {
-        return $this->container['url'];
+        return $this->container['guides_connection'];
     }
 
     /**
-     * Sets url
+     * Sets guides_connection
      *
-     * @param string $url url
+     * @param string $guides_connection guides_connection
      *
      * @return $this
      */
-    public function setUrl($url)
+    public function setGuidesConnection($guides_connection)
     {
-        $this->container['url'] = $url;
+        $this->container['guides_connection'] = $guides_connection;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string $title title
+     *
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
 
         return $this;
     }

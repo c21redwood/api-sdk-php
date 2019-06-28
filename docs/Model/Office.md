@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **float** |  | [optional] 
+**id** | **int** |  | [optional] 
 **name** | **string** |  | [optional] 
 **address** | **string** |  | [optional] 
 **city** | **string** |  | [optional] 
@@ -13,5 +13,4 @@ Name | Type | Description | Notes
 **mls_connection** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

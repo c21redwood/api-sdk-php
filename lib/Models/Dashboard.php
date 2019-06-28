@@ -1,6 +1,6 @@
 <?php
 /**
- * SsoApp
+ * Dashboard
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Redwood\ObjectSerializer;
 
 /**
- * SsoApp Class Doc Comment
+ * Dashboard Class Doc Comment
  *
  * @category Class
  * @package  Redwood
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SsoApp implements ModelInterface, ArrayAccess
+class Dashboard implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class SsoApp implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'SsoApp';
+    protected static $swaggerModelName = 'Dashboard';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,10 +56,12 @@ class SsoApp implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'icon' => 'string',
-'name' => 'string',
-'url' => 'string',
-'link' => 'string'    ];
+        'id' => 'BigDecimal',
+'title' => 'string',
+'widgets' => 'string',
+'roles' => 'object[]',
+'created_at' => '\DateTime',
+'updated_at' => '\DateTime'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -67,10 +69,12 @@ class SsoApp implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'icon' => null,
-'name' => null,
-'url' => null,
-'link' => null    ];
+        'id' => null,
+'title' => null,
+'widgets' => null,
+'roles' => null,
+'created_at' => 'date-time',
+'updated_at' => 'date-time'    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -99,10 +103,12 @@ class SsoApp implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'icon' => 'icon',
-'name' => 'name',
-'url' => 'url',
-'link' => 'link'    ];
+        'id' => 'id',
+'title' => 'title',
+'widgets' => 'widgets',
+'roles' => 'roles',
+'created_at' => 'created_at',
+'updated_at' => 'updated_at'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -110,10 +116,12 @@ class SsoApp implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'icon' => 'setIcon',
-'name' => 'setName',
-'url' => 'setUrl',
-'link' => 'setLink'    ];
+        'id' => 'setId',
+'title' => 'setTitle',
+'widgets' => 'setWidgets',
+'roles' => 'setRoles',
+'created_at' => 'setCreatedAt',
+'updated_at' => 'setUpdatedAt'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -121,10 +129,12 @@ class SsoApp implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'icon' => 'getIcon',
-'name' => 'getName',
-'url' => 'getUrl',
-'link' => 'getLink'    ];
+        'id' => 'getId',
+'title' => 'getTitle',
+'widgets' => 'getWidgets',
+'roles' => 'getRoles',
+'created_at' => 'getCreatedAt',
+'updated_at' => 'getUpdatedAt'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -184,10 +194,12 @@ class SsoApp implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['icon'] = isset($data['icon']) ? $data['icon'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['link'] = isset($data['link']) ? $data['link'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['widgets'] = isset($data['widgets']) ? $data['widgets'] : null;
+        $this->container['roles'] = isset($data['roles']) ? $data['roles'] : null;
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
     }
 
     /**
@@ -215,97 +227,145 @@ class SsoApp implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets icon
+     * Gets id
      *
-     * @return string
+     * @return BigDecimal
      */
-    public function getIcon()
+    public function getId()
     {
-        return $this->container['icon'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets icon
+     * Sets id
      *
-     * @param string $icon icon
+     * @param BigDecimal $id id
      *
      * @return $this
      */
-    public function setIcon($icon)
+    public function setId($id)
     {
-        $this->container['icon'] = $icon;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets title
      *
      * @return string
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->container['name'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets name
+     * Sets title
      *
-     * @param string $name name
+     * @param string $title title
      *
      * @return $this
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->container['name'] = $name;
+        $this->container['title'] = $title;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets widgets
      *
      * @return string
      */
-    public function getUrl()
+    public function getWidgets()
     {
-        return $this->container['url'];
+        return $this->container['widgets'];
     }
 
     /**
-     * Sets url
+     * Sets widgets
      *
-     * @param string $url url
+     * @param string $widgets widgets
      *
      * @return $this
      */
-    public function setUrl($url)
+    public function setWidgets($widgets)
     {
-        $this->container['url'] = $url;
+        $this->container['widgets'] = $widgets;
 
         return $this;
     }
 
     /**
-     * Gets link
+     * Gets roles
      *
-     * @return string
+     * @return object[]
      */
-    public function getLink()
+    public function getRoles()
     {
-        return $this->container['link'];
+        return $this->container['roles'];
     }
 
     /**
-     * Sets link
+     * Sets roles
      *
-     * @param string $link link
+     * @param object[] $roles roles
      *
      * @return $this
      */
-    public function setLink($link)
+    public function setRoles($roles)
     {
-        $this->container['link'] = $link;
+        $this->container['roles'] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param \DateTime $created_at created_at
+     *
+     * @return $this
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param \DateTime $updated_at updated_at
+     *
+     * @return $this
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->container['updated_at'] = $updated_at;
 
         return $this;
     }

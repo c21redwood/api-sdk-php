@@ -131,3 +131,23 @@ function redwood_offices($flush = false) : ?array
     return $offices;
   });
 }
+
+/**
+ * Load a Guide
+ * @param $connection
+ * @param $id
+ * @return \Redwood\Models\Guide
+ * @throws \Redwood\ApiException
+ */
+function redwood_get_guide_by_connection($connection, $id, $flush = false)
+{
+  $cacheKey = sprintf('guide_%s_%s', $connection, $id);
+
+  if ($flush) {
+    cache_forge($cacheKey);
+  }
+
+  return cache_remember($cacheKey, 5, function() use ($connection, $id) {
+    return redwood()->guideConnectionIdGet($connection, $id);
+  });
+}
