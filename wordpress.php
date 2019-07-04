@@ -174,7 +174,7 @@ function redwood_get_user($user = null, $field = 'id', $flush = false)
 
   $cacheKey = sprintf('redwood_get_user_%s_%s', $field, $user);
 
-  if (true || $flush) {
+  if ($flush) {
     cache_forget($cacheKey);
   }
 
