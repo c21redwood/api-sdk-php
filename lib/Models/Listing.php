@@ -1,6 +1,6 @@
 <?php
 /**
- * User
+ * Listing
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Redwood\ObjectSerializer;
 
 /**
- * User Class Doc Comment
+ * Listing Class Doc Comment
  *
  * @category Class
  * @package  Redwood
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class User implements ModelInterface, ArrayAccess
+class Listing implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class User implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'User';
+    protected static $swaggerModelName = 'Listing';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,11 +59,14 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'int',
 'created_at' => '\DateTime',
 'updated_at' => '\DateTime',
-'email' => 'string',
-'first_name' => 'string',
-'last_name' => 'string',
-'phone' => 'string',
-'office' => '\Redwood\Models\Office'    ];
+'street_address' => 'string',
+'city' => 'string',
+'state' => 'string',
+'zip' => 'string',
+'latitude' => 'float',
+'longitude' => 'float',
+'mls_id' => 'string',
+'mls_connection' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -74,11 +77,14 @@ class User implements ModelInterface, ArrayAccess
         'id' => null,
 'created_at' => 'date-time',
 'updated_at' => 'date-time',
-'email' => 'email',
-'first_name' => null,
-'last_name' => null,
-'phone' => null,
-'office' => null    ];
+'street_address' => null,
+'city' => null,
+'state' => null,
+'zip' => null,
+'latitude' => 'float',
+'longitude' => 'float',
+'mls_id' => null,
+'mls_connection' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -110,11 +116,14 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'id',
 'created_at' => 'created_at',
 'updated_at' => 'updated_at',
-'email' => 'email',
-'first_name' => 'first_name',
-'last_name' => 'last_name',
-'phone' => 'phone',
-'office' => 'office'    ];
+'street_address' => 'street_address',
+'city' => 'city',
+'state' => 'state',
+'zip' => 'zip',
+'latitude' => 'latitude',
+'longitude' => 'longitude',
+'mls_id' => 'mls_id',
+'mls_connection' => 'mls_connection'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -125,11 +134,14 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'setId',
 'created_at' => 'setCreatedAt',
 'updated_at' => 'setUpdatedAt',
-'email' => 'setEmail',
-'first_name' => 'setFirstName',
-'last_name' => 'setLastName',
-'phone' => 'setPhone',
-'office' => 'setOffice'    ];
+'street_address' => 'setStreetAddress',
+'city' => 'setCity',
+'state' => 'setState',
+'zip' => 'setZip',
+'latitude' => 'setLatitude',
+'longitude' => 'setLongitude',
+'mls_id' => 'setMlsId',
+'mls_connection' => 'setMlsConnection'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -140,11 +152,14 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'getId',
 'created_at' => 'getCreatedAt',
 'updated_at' => 'getUpdatedAt',
-'email' => 'getEmail',
-'first_name' => 'getFirstName',
-'last_name' => 'getLastName',
-'phone' => 'getPhone',
-'office' => 'getOffice'    ];
+'street_address' => 'getStreetAddress',
+'city' => 'getCity',
+'state' => 'getState',
+'zip' => 'getZip',
+'latitude' => 'getLatitude',
+'longitude' => 'getLongitude',
+'mls_id' => 'getMlsId',
+'mls_connection' => 'getMlsConnection'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -207,11 +222,14 @@ class User implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['first_name'] = isset($data['first_name']) ? $data['first_name'] : null;
-        $this->container['last_name'] = isset($data['last_name']) ? $data['last_name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['office'] = isset($data['office']) ? $data['office'] : null;
+        $this->container['street_address'] = isset($data['street_address']) ? $data['street_address'] : null;
+        $this->container['city'] = isset($data['city']) ? $data['city'] : null;
+        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
+        $this->container['zip'] = isset($data['zip']) ? $data['zip'] : null;
+        $this->container['latitude'] = isset($data['latitude']) ? $data['latitude'] : null;
+        $this->container['longitude'] = isset($data['longitude']) ? $data['longitude'] : null;
+        $this->container['mls_id'] = isset($data['mls_id']) ? $data['mls_id'] : null;
+        $this->container['mls_connection'] = isset($data['mls_connection']) ? $data['mls_connection'] : null;
     }
 
     /**
@@ -311,121 +329,193 @@ class User implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets email
+     * Gets street_address
      *
      * @return string
      */
-    public function getEmail()
+    public function getStreetAddress()
     {
-        return $this->container['email'];
+        return $this->container['street_address'];
     }
 
     /**
-     * Sets email
+     * Sets street_address
      *
-     * @param string $email email
+     * @param string $street_address street_address
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setStreetAddress($street_address)
     {
-        $this->container['email'] = $email;
+        $this->container['street_address'] = $street_address;
 
         return $this;
     }
 
     /**
-     * Gets first_name
+     * Gets city
      *
      * @return string
      */
-    public function getFirstName()
+    public function getCity()
     {
-        return $this->container['first_name'];
+        return $this->container['city'];
     }
 
     /**
-     * Sets first_name
+     * Sets city
      *
-     * @param string $first_name first_name
+     * @param string $city city
      *
      * @return $this
      */
-    public function setFirstName($first_name)
+    public function setCity($city)
     {
-        $this->container['first_name'] = $first_name;
+        $this->container['city'] = $city;
 
         return $this;
     }
 
     /**
-     * Gets last_name
+     * Gets state
      *
      * @return string
      */
-    public function getLastName()
+    public function getState()
     {
-        return $this->container['last_name'];
+        return $this->container['state'];
     }
 
     /**
-     * Sets last_name
+     * Sets state
      *
-     * @param string $last_name last_name
+     * @param string $state state
      *
      * @return $this
      */
-    public function setLastName($last_name)
+    public function setState($state)
     {
-        $this->container['last_name'] = $last_name;
+        $this->container['state'] = $state;
 
         return $this;
     }
 
     /**
-     * Gets phone
+     * Gets zip
      *
      * @return string
      */
-    public function getPhone()
+    public function getZip()
     {
-        return $this->container['phone'];
+        return $this->container['zip'];
     }
 
     /**
-     * Sets phone
+     * Sets zip
      *
-     * @param string $phone phone
+     * @param string $zip zip
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setZip($zip)
     {
-        $this->container['phone'] = $phone;
+        $this->container['zip'] = $zip;
 
         return $this;
     }
 
     /**
-     * Gets office
+     * Gets latitude
      *
-     * @return \Redwood\Models\Office
+     * @return float
      */
-    public function getOffice()
+    public function getLatitude()
     {
-        return $this->container['office'];
+        return $this->container['latitude'];
     }
 
     /**
-     * Sets office
+     * Sets latitude
      *
-     * @param \Redwood\Models\Office $office office
+     * @param float $latitude latitude
      *
      * @return $this
      */
-    public function setOffice($office)
+    public function setLatitude($latitude)
     {
-        $this->container['office'] = $office;
+        $this->container['latitude'] = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Gets longitude
+     *
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->container['longitude'];
+    }
+
+    /**
+     * Sets longitude
+     *
+     * @param float $longitude longitude
+     *
+     * @return $this
+     */
+    public function setLongitude($longitude)
+    {
+        $this->container['longitude'] = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Gets mls_id
+     *
+     * @return string
+     */
+    public function getMlsId()
+    {
+        return $this->container['mls_id'];
+    }
+
+    /**
+     * Sets mls_id
+     *
+     * @param string $mls_id mls_id
+     *
+     * @return $this
+     */
+    public function setMlsId($mls_id)
+    {
+        $this->container['mls_id'] = $mls_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets mls_connection
+     *
+     * @return string
+     */
+    public function getMlsConnection()
+    {
+        return $this->container['mls_connection'];
+    }
+
+    /**
+     * Sets mls_connection
+     *
+     * @param string $mls_connection mls_connection
+     *
+     * @return $this
+     */
+    public function setMlsConnection($mls_connection)
+    {
+        $this->container['mls_connection'] = $mls_connection;
 
         return $this;
     }

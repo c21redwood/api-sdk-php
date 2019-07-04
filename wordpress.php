@@ -56,7 +56,7 @@ function redwood_api_access_token() : ?String
  * Get the Redwood SDK API Client
  * @return \Redwood\Client\DefaultApi
  */
-function redwood() : Redwood\Client\DefaultApi
+function redwood()
 {
   static $api;
 
@@ -141,13 +141,65 @@ function redwood_offices($flush = false) : ?array
  */
 function redwood_get_guide_by_connection($connection, $id, $flush = false)
 {
-  $cacheKey = sprintf('guide_%s_%s', $connection, $id);
+  $cacheKey = sprintf('redwood_guide_%s_%s', $connection, $id);
 
   if ($flush) {
     cache_forget($cacheKey);
   }
 
   return cache_remember($cacheKey, 5, function() use ($connection, $id) {
-    return redwood()->guideConnectionIdGet($connection, $id);
+    return redwood()->supportConnectionGuideIdGet($connection, $id);
+  });
+}
+
+/**
+ * @param WP_User|string|integer|null $user
+ * @param string|'id' $field
+ * @param bool $flush
+ * @return \Redwood\Models\User
+ * @throws \Redwood\ApiException
+ */
+function redwood_get_user($user = null, $field = 'id', $flush = false)
+{
+  if (is_null($user)) {
+    if (!is_user_logged_in()) {
+      return false;
+    }
+    $user = wp_get_current_user()->user_login;
+    $field = 'email';
+  } else if (is_object($user)) {
+    $user = $user->user_login;
+    $field = 'email';
+  }
+
+  $cacheKey = sprintf('redwood_get_user_%s_%s', $field, $user);
+
+  if (true || $flush) {
+    cache_forget($cacheKey);
+  }
+
+  return cache_remember($cacheKey, 30, function() use ($user, $field) {
+    return redwood()->usersRefGet($user, $field);
+  });
+}
+
+/**
+ * @param $connection
+ * @param $ref
+ * @param string $field
+ * @param bool $flush
+ * @return \Redwood\Models\Listing
+ * @throws \Redwood\ApiException
+ */
+function redwood_get_listing_by_mls($connection, $ref, $field = 'mls_id', $flush = false)
+{
+  $cacheKey = sprintf('redwood_listing_%s_%s_%s', $connection, $ref, $field);
+
+  if ($flush) {
+    cache_forget($cacheKey);
+  }
+
+  return cache_remember($cacheKey, 30, function() use ($connection, $ref, $field) {
+    return redwood()->listingsConnectionRefGet($connection, $ref, $field);
   });
 }

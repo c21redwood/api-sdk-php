@@ -84,14 +84,15 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connection = "connection_example"; // string | The name of the connection (source)
-$id = "id_example"; // string | The ID of the connected guide (third-party primary key)
+$connection = "connection_example"; // string | The MLS connection name
+$ref = "ref_example"; // string | The ref to use to do the lookup
+$field = "field_example"; // string | The field to do the lookup against
 
 try {
-    $result = $apiInstance->guideConnectionIdGet($connection, $id);
+    $result = $apiInstance->listingsConnectionRefGet($connection, $ref, $field);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->guideConnectionIdGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->listingsConnectionRefGet: ', $e->getMessage(), PHP_EOL;
 }
 
 // Configure OAuth2 access token for authorization: passport
@@ -127,6 +128,44 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->ssoAppsGet: ', $e->getMessage(), PHP_EOL;
 }
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$connection = "connection_example"; // string | The name of the connection (source)
+$id = "id_example"; // string | The ID of the connected guide (third-party primary key)
+
+try {
+    $result = $apiInstance->supportConnectionGuideIdGet($connection, $id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->supportConnectionGuideIdGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$ref = 56; // int | The reference value to query for
+$field = "field_example"; // string | The field to query against
+
+try {
+    $result = $apiInstance->usersRefGet($ref, $field);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->usersRefGet: ', $e->getMessage(), PHP_EOL;
+}
 ?>
 ```
 
@@ -137,9 +176,11 @@ All URIs are relative to *///api/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**geocodePost**](docs/Api/DefaultApi.md#geocodepost) | **POST** /geocode | Geocode the given address
-*DefaultApi* | [**guideConnectionIdGet**](docs/Api/DefaultApi.md#guideconnectionidget) | **GET** /guide/{connection}/{id} | Get a guide based on its connection reference
+*DefaultApi* | [**listingsConnectionRefGet**](docs/Api/DefaultApi.md#listingsconnectionrefget) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
 *DefaultApi* | [**officesGet**](docs/Api/DefaultApi.md#officesget) | **GET** /offices | 
 *DefaultApi* | [**ssoAppsGet**](docs/Api/DefaultApi.md#ssoappsget) | **GET** /sso/apps | Get a list of the SSO apps
+*DefaultApi* | [**supportConnectionGuideIdGet**](docs/Api/DefaultApi.md#supportconnectionguideidget) | **GET** /support/{connection}/guide/{id} | Get a guide based on its connection reference
+*DefaultApi* | [**usersRefGet**](docs/Api/DefaultApi.md#usersrefget) | **GET** /users/{ref} | Get a user record
 
 ## Documentation For Models
 
@@ -147,6 +188,7 @@ Class | Method | HTTP request | Description
  - [Error](docs/Model/Error.md)
  - [File](docs/Model/File.md)
  - [Guide](docs/Model/Guide.md)
+ - [Listing](docs/Model/Listing.md)
  - [Office](docs/Model/Office.md)
  - [Place](docs/Model/Place.md)
  - [SsoApp](docs/Model/SsoApp.md)

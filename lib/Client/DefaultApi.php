@@ -359,39 +359,41 @@ class DefaultApi
     }
 
     /**
-     * Operation guideConnectionIdGet
+     * Operation listingsConnectionRefGet
      *
-     * Get a guide based on its connection reference
+     * Get a Listing object from an MLS
      *
-     * @param  string $connection The name of the connection (source) (required)
-     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     * @param  string $connection The MLS connection name (required)
+     * @param  string $ref The ref to use to do the lookup (required)
+     * @param  string $field The field to do the lookup against (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Redwood\Models\Guide
+     * @return \Redwood\Models\Listing
      */
-    public function guideConnectionIdGet($connection, $id)
+    public function listingsConnectionRefGet($connection, $ref, $field = null)
     {
-        list($response) = $this->guideConnectionIdGetWithHttpInfo($connection, $id);
+        list($response) = $this->listingsConnectionRefGetWithHttpInfo($connection, $ref, $field);
         return $response;
     }
 
     /**
-     * Operation guideConnectionIdGetWithHttpInfo
+     * Operation listingsConnectionRefGetWithHttpInfo
      *
-     * Get a guide based on its connection reference
+     * Get a Listing object from an MLS
      *
-     * @param  string $connection The name of the connection (source) (required)
-     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     * @param  string $connection The MLS connection name (required)
+     * @param  string $ref The ref to use to do the lookup (required)
+     * @param  string $field The field to do the lookup against (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Redwood\Models\Guide, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Redwood\Models\Listing, HTTP status code, HTTP response headers (array of strings)
      */
-    public function guideConnectionIdGetWithHttpInfo($connection, $id)
+    public function listingsConnectionRefGetWithHttpInfo($connection, $ref, $field = null)
     {
-        $returnType = '\Redwood\Models\Guide';
-        $request = $this->guideConnectionIdGetRequest($connection, $id);
+        $returnType = '\Redwood\Models\Listing';
+        $request = $this->listingsConnectionRefGetRequest($connection, $ref, $field);
 
         try {
             $options = $this->createHttpClientOption();
@@ -442,7 +444,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Redwood\Models\Guide',
+                        '\Redwood\Models\Listing',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -463,33 +465,26 @@ class DefaultApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
             }
             throw $e;
         }
     }
 
     /**
-     * Operation guideConnectionIdGetAsync
+     * Operation listingsConnectionRefGetAsync
      *
-     * Get a guide based on its connection reference
+     * Get a Listing object from an MLS
      *
-     * @param  string $connection The name of the connection (source) (required)
-     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     * @param  string $connection The MLS connection name (required)
+     * @param  string $ref The ref to use to do the lookup (required)
+     * @param  string $field The field to do the lookup against (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function guideConnectionIdGetAsync($connection, $id)
+    public function listingsConnectionRefGetAsync($connection, $ref, $field = null)
     {
-        return $this->guideConnectionIdGetAsyncWithHttpInfo($connection, $id)
+        return $this->listingsConnectionRefGetAsyncWithHttpInfo($connection, $ref, $field)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -498,20 +493,21 @@ class DefaultApi
     }
 
     /**
-     * Operation guideConnectionIdGetAsyncWithHttpInfo
+     * Operation listingsConnectionRefGetAsyncWithHttpInfo
      *
-     * Get a guide based on its connection reference
+     * Get a Listing object from an MLS
      *
-     * @param  string $connection The name of the connection (source) (required)
-     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     * @param  string $connection The MLS connection name (required)
+     * @param  string $ref The ref to use to do the lookup (required)
+     * @param  string $field The field to do the lookup against (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function guideConnectionIdGetAsyncWithHttpInfo($connection, $id)
+    public function listingsConnectionRefGetAsyncWithHttpInfo($connection, $ref, $field = null)
     {
-        $returnType = '\Redwood\Models\Guide';
-        $request = $this->guideConnectionIdGetRequest($connection, $id);
+        $returnType = '\Redwood\Models\Listing';
+        $request = $this->listingsConnectionRefGetRequest($connection, $ref, $field);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -551,36 +547,41 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'guideConnectionIdGet'
+     * Create request for operation 'listingsConnectionRefGet'
      *
-     * @param  string $connection The name of the connection (source) (required)
-     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     * @param  string $connection The MLS connection name (required)
+     * @param  string $ref The ref to use to do the lookup (required)
+     * @param  string $field The field to do the lookup against (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function guideConnectionIdGetRequest($connection, $id)
+    protected function listingsConnectionRefGetRequest($connection, $ref, $field = null)
     {
         // verify the required parameter 'connection' is set
         if ($connection === null || (is_array($connection) && count($connection) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $connection when calling guideConnectionIdGet'
+                'Missing the required parameter $connection when calling listingsConnectionRefGet'
             );
         }
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // verify the required parameter 'ref' is set
+        if ($ref === null || (is_array($ref) && count($ref) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling guideConnectionIdGet'
+                'Missing the required parameter $ref when calling listingsConnectionRefGet'
             );
         }
 
-        $resourcePath = '/guide/{connection}/{id}';
+        $resourcePath = '/listings/{connection}/{ref}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($field !== null) {
+            $queryParams['field'] = ObjectSerializer::toQueryValue($field);
+        }
 
         // path params
         if ($connection !== null) {
@@ -591,10 +592,10 @@ class DefaultApi
             );
         }
         // path params
-        if ($id !== null) {
+        if ($ref !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
+                '{' . 'ref' . '}',
+                ObjectSerializer::toPathValue($ref),
                 $resourcePath
             );
         }
@@ -1120,6 +1121,606 @@ class DefaultApi
         $multipart = false;
 
 
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['*/*']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['*/*'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation supportConnectionGuideIdGet
+     *
+     * Get a guide based on its connection reference
+     *
+     * @param  string $connection The name of the connection (source) (required)
+     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     *
+     * @throws \Redwood\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Redwood\Models\Guide
+     */
+    public function supportConnectionGuideIdGet($connection, $id)
+    {
+        list($response) = $this->supportConnectionGuideIdGetWithHttpInfo($connection, $id);
+        return $response;
+    }
+
+    /**
+     * Operation supportConnectionGuideIdGetWithHttpInfo
+     *
+     * Get a guide based on its connection reference
+     *
+     * @param  string $connection The name of the connection (source) (required)
+     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     *
+     * @throws \Redwood\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Redwood\Models\Guide, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function supportConnectionGuideIdGetWithHttpInfo($connection, $id)
+    {
+        $returnType = '\Redwood\Models\Guide';
+        $request = $this->supportConnectionGuideIdGetRequest($connection, $id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Redwood\Models\Guide',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation supportConnectionGuideIdGetAsync
+     *
+     * Get a guide based on its connection reference
+     *
+     * @param  string $connection The name of the connection (source) (required)
+     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function supportConnectionGuideIdGetAsync($connection, $id)
+    {
+        return $this->supportConnectionGuideIdGetAsyncWithHttpInfo($connection, $id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation supportConnectionGuideIdGetAsyncWithHttpInfo
+     *
+     * Get a guide based on its connection reference
+     *
+     * @param  string $connection The name of the connection (source) (required)
+     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function supportConnectionGuideIdGetAsyncWithHttpInfo($connection, $id)
+    {
+        $returnType = '\Redwood\Models\Guide';
+        $request = $this->supportConnectionGuideIdGetRequest($connection, $id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'supportConnectionGuideIdGet'
+     *
+     * @param  string $connection The name of the connection (source) (required)
+     * @param  string $id The ID of the connected guide (third-party primary key) (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function supportConnectionGuideIdGetRequest($connection, $id)
+    {
+        // verify the required parameter 'connection' is set
+        if ($connection === null || (is_array($connection) && count($connection) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $connection when calling supportConnectionGuideIdGet'
+            );
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling supportConnectionGuideIdGet'
+            );
+        }
+
+        $resourcePath = '/support/{connection}/guide/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($connection !== null) {
+            $resourcePath = str_replace(
+                '{' . 'connection' . '}',
+                ObjectSerializer::toPathValue($connection),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['*/*']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['*/*'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation usersRefGet
+     *
+     * Get a user record
+     *
+     * @param  int $ref The reference value to query for (required)
+     * @param  string $field The field to query against (optional)
+     *
+     * @throws \Redwood\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Redwood\Models\User
+     */
+    public function usersRefGet($ref, $field = null)
+    {
+        list($response) = $this->usersRefGetWithHttpInfo($ref, $field);
+        return $response;
+    }
+
+    /**
+     * Operation usersRefGetWithHttpInfo
+     *
+     * Get a user record
+     *
+     * @param  int $ref The reference value to query for (required)
+     * @param  string $field The field to query against (optional)
+     *
+     * @throws \Redwood\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Redwood\Models\User, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function usersRefGetWithHttpInfo($ref, $field = null)
+    {
+        $returnType = '\Redwood\Models\User';
+        $request = $this->usersRefGetRequest($ref, $field);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Redwood\Models\User',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation usersRefGetAsync
+     *
+     * Get a user record
+     *
+     * @param  int $ref The reference value to query for (required)
+     * @param  string $field The field to query against (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function usersRefGetAsync($ref, $field = null)
+    {
+        return $this->usersRefGetAsyncWithHttpInfo($ref, $field)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation usersRefGetAsyncWithHttpInfo
+     *
+     * Get a user record
+     *
+     * @param  int $ref The reference value to query for (required)
+     * @param  string $field The field to query against (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function usersRefGetAsyncWithHttpInfo($ref, $field = null)
+    {
+        $returnType = '\Redwood\Models\User';
+        $request = $this->usersRefGetRequest($ref, $field);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'usersRefGet'
+     *
+     * @param  int $ref The reference value to query for (required)
+     * @param  string $field The field to query against (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function usersRefGetRequest($ref, $field = null)
+    {
+        // verify the required parameter 'ref' is set
+        if ($ref === null || (is_array($ref) && count($ref) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $ref when calling usersRefGet'
+            );
+        }
+
+        $resourcePath = '/users/{ref}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($field !== null) {
+            $queryParams['field'] = ObjectSerializer::toQueryValue($field);
+        }
+
+        // path params
+        if ($ref !== null) {
+            $resourcePath = str_replace(
+                '{' . 'ref' . '}',
+                ObjectSerializer::toPathValue($ref),
+                $resourcePath
+            );
+        }
 
         // body params
         $_tempBody = null;
