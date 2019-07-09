@@ -148,7 +148,10 @@ function redwood_get_guide_by_connection($connection, $id, $flush = false)
   }
 
   return cache_remember($cacheKey, 5, function() use ($connection, $id) {
-    return redwood()->supportConnectionGuideIdGet($connection, $id);
+    if (!$guide = redwood()->supportConnectionGuideIdGet($connection, $id)) {
+      throw new \Exception("Couldn't load Guide [{$connection}:{$id}].");
+    }
+    return $guide;
   });
 }
 
