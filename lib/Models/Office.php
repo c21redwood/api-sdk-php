@@ -63,7 +63,8 @@ class Office implements ModelInterface, ArrayAccess
 'state' => 'string',
 'phone' => 'string',
 'mls_id' => 'string',
-'mls_connection' => 'string'    ];
+'mls_connection' => 'string',
+'office_admins' => '\Redwood\Models\User[]'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -78,7 +79,8 @@ class Office implements ModelInterface, ArrayAccess
 'state' => null,
 'phone' => null,
 'mls_id' => null,
-'mls_connection' => null    ];
+'mls_connection' => null,
+'office_admins' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -114,7 +116,8 @@ class Office implements ModelInterface, ArrayAccess
 'state' => 'state',
 'phone' => 'phone',
 'mls_id' => 'mls_id',
-'mls_connection' => 'mls_connection'    ];
+'mls_connection' => 'mls_connection',
+'office_admins' => 'office_admins'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -129,7 +132,8 @@ class Office implements ModelInterface, ArrayAccess
 'state' => 'setState',
 'phone' => 'setPhone',
 'mls_id' => 'setMlsId',
-'mls_connection' => 'setMlsConnection'    ];
+'mls_connection' => 'setMlsConnection',
+'office_admins' => 'setOfficeAdmins'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -144,7 +148,8 @@ class Office implements ModelInterface, ArrayAccess
 'state' => 'getState',
 'phone' => 'getPhone',
 'mls_id' => 'getMlsId',
-'mls_connection' => 'getMlsConnection'    ];
+'mls_connection' => 'getMlsConnection',
+'office_admins' => 'getOfficeAdmins'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -212,6 +217,7 @@ class Office implements ModelInterface, ArrayAccess
         $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
         $this->container['mls_id'] = isset($data['mls_id']) ? $data['mls_id'] : null;
         $this->container['mls_connection'] = isset($data['mls_connection']) ? $data['mls_connection'] : null;
+        $this->container['office_admins'] = isset($data['office_admins']) ? $data['office_admins'] : null;
     }
 
     /**
@@ -426,6 +432,30 @@ class Office implements ModelInterface, ArrayAccess
     public function setMlsConnection($mls_connection)
     {
         $this->container['mls_connection'] = $mls_connection;
+
+        return $this;
+    }
+
+    /**
+     * Gets office_admins
+     *
+     * @return \Redwood\Models\User[]
+     */
+    public function getOfficeAdmins()
+    {
+        return $this->container['office_admins'];
+    }
+
+    /**
+     * Sets office_admins
+     *
+     * @param \Redwood\Models\User[] $office_admins office_admins
+     *
+     * @return $this
+     */
+    public function setOfficeAdmins($office_admins)
+    {
+        $this->container['office_admins'] = $office_admins;
 
         return $this;
     }
