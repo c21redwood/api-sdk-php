@@ -8,11 +8,12 @@ Method | HTTP request | Description
 [**listingsConnectionRefGet**](DefaultApi.md#listingsConnectionRefGet) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
 [**officesGet**](DefaultApi.md#officesGet) | **GET** /offices | 
 [**ssoAppsGet**](DefaultApi.md#ssoAppsGet) | **GET** /sso/apps | Get a list of the SSO apps
+[**ssoAppsIdGet**](DefaultApi.md#ssoAppsIdGet) | **GET** /sso/apps/{id} | Get a single SSO App
 [**supportConnectionGuideIdGet**](DefaultApi.md#supportConnectionGuideIdGet) | **GET** /support/{connection}/guide/{id} | Get a guide based on its connection reference
 [**usersRefGet**](DefaultApi.md#usersRefGet) | **GET** /users/{ref} | Get a user record
 
 # **geocodePost**
-> \Redwood\Models\Place geocodePost($address)
+> \Redwood\Models\Place geocodePost($address, $flush, $connection)
 
 Geocode the given address
 
@@ -31,9 +32,11 @@ $apiInstance = new Redwood\Client\DefaultApi(
     $config
 );
 $address = "address_example"; // string | 
+$flush = True; // bool | 
+$connection = "connection_example"; // string | 
 
 try {
-    $result = $apiInstance->geocodePost($address);
+    $result = $apiInstance->geocodePost($address, $flush, $connection);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->geocodePost: ', $e->getMessage(), PHP_EOL;
@@ -46,6 +49,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **address** | [**string**](../Model/.md)|  | [optional]
+ **flush** | [**bool**](../Model/.md)|  | [optional]
+ **connection** | [**string**](../Model/.md)|  | [optional]
 
 ### Return type
 
@@ -165,7 +170,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **ssoAppsGet**
-> \Redwood\Models\SsoApp[] ssoAppsGet()
+> \Redwood\Models\App[] ssoAppsGet($connection)
 
 Get a list of the SSO apps
 
@@ -183,9 +188,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$connection = "connection_example"; // string | The name of the connection
 
 try {
-    $result = $apiInstance->ssoAppsGet();
+    $result = $apiInstance->ssoAppsGet($connection);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->ssoAppsGet: ', $e->getMessage(), PHP_EOL;
@@ -194,11 +200,67 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **connection** | **string**| The name of the connection | [optional]
 
 ### Return type
 
-[**\Redwood\Models\SsoApp[]**](../Model/SsoApp.md)
+[**\Redwood\Models\App[]**](../Model/App.md)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **ssoAppsIdGet**
+> \Redwood\Models\App[] ssoAppsIdGet($id, $connection)
+
+Get a single SSO App
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = "id_example"; // string | The ID of the app
+$connection = "connection_example"; // string | The name of the connection
+
+try {
+    $result = $apiInstance->ssoAppsIdGet($id, $connection);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->ssoAppsIdGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| The ID of the app |
+ **connection** | **string**| The name of the connection | [optional]
+
+### Return type
+
+[**\Redwood\Models\App[]**](../Model/App.md)
 
 ### Authorization
 

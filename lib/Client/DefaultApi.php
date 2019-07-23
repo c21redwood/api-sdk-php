@@ -92,14 +92,16 @@ class DefaultApi
      * Geocode the given address
      *
      * @param  string $address address (optional)
+     * @param  bool $flush flush (optional)
+     * @param  string $connection connection (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Redwood\Models\Place
      */
-    public function geocodePost($address = null)
+    public function geocodePost($address = null, $flush = null, $connection = null)
     {
-        list($response) = $this->geocodePostWithHttpInfo($address);
+        list($response) = $this->geocodePostWithHttpInfo($address, $flush, $connection);
         return $response;
     }
 
@@ -109,15 +111,17 @@ class DefaultApi
      * Geocode the given address
      *
      * @param  string $address (optional)
+     * @param  bool $flush (optional)
+     * @param  string $connection (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Redwood\Models\Place, HTTP status code, HTTP response headers (array of strings)
      */
-    public function geocodePostWithHttpInfo($address = null)
+    public function geocodePostWithHttpInfo($address = null, $flush = null, $connection = null)
     {
         $returnType = '\Redwood\Models\Place';
-        $request = $this->geocodePostRequest($address);
+        $request = $this->geocodePostRequest($address, $flush, $connection);
 
         try {
             $options = $this->createHttpClientOption();
@@ -200,13 +204,15 @@ class DefaultApi
      * Geocode the given address
      *
      * @param  string $address (optional)
+     * @param  bool $flush (optional)
+     * @param  string $connection (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function geocodePostAsync($address = null)
+    public function geocodePostAsync($address = null, $flush = null, $connection = null)
     {
-        return $this->geocodePostAsyncWithHttpInfo($address)
+        return $this->geocodePostAsyncWithHttpInfo($address, $flush, $connection)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -220,14 +226,16 @@ class DefaultApi
      * Geocode the given address
      *
      * @param  string $address (optional)
+     * @param  bool $flush (optional)
+     * @param  string $connection (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function geocodePostAsyncWithHttpInfo($address = null)
+    public function geocodePostAsyncWithHttpInfo($address = null, $flush = null, $connection = null)
     {
         $returnType = '\Redwood\Models\Place';
-        $request = $this->geocodePostRequest($address);
+        $request = $this->geocodePostRequest($address, $flush, $connection);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -270,11 +278,13 @@ class DefaultApi
      * Create request for operation 'geocodePost'
      *
      * @param  string $address (optional)
+     * @param  bool $flush (optional)
+     * @param  string $connection (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function geocodePostRequest($address = null)
+    protected function geocodePostRequest($address = null, $flush = null, $connection = null)
     {
 
         $resourcePath = '/geocode';
@@ -289,6 +299,14 @@ class DefaultApi
         // form params
         if ($address !== null) {
             $formParams['address'] = ObjectSerializer::toFormValue($address);
+        }
+        // form params
+        if ($flush !== null) {
+            $formParams['flush'] = ObjectSerializer::toFormValue($flush);
+        }
+        // form params
+        if ($connection !== null) {
+            $formParams['connection'] = ObjectSerializer::toFormValue($connection);
         }
         // body params
         $_tempBody = null;
@@ -932,14 +950,15 @@ class DefaultApi
      *
      * Get a list of the SSO apps
      *
+     * @param  string $connection The name of the connection (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Redwood\Models\SsoApp[]
+     * @return \Redwood\Models\App[]
      */
-    public function ssoAppsGet()
+    public function ssoAppsGet($connection = null)
     {
-        list($response) = $this->ssoAppsGetWithHttpInfo();
+        list($response) = $this->ssoAppsGetWithHttpInfo($connection);
         return $response;
     }
 
@@ -948,15 +967,16 @@ class DefaultApi
      *
      * Get a list of the SSO apps
      *
+     * @param  string $connection The name of the connection (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Redwood\Models\SsoApp[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Redwood\Models\App[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function ssoAppsGetWithHttpInfo()
+    public function ssoAppsGetWithHttpInfo($connection = null)
     {
-        $returnType = '\Redwood\Models\SsoApp[]';
-        $request = $this->ssoAppsGetRequest();
+        $returnType = '\Redwood\Models\App[]';
+        $request = $this->ssoAppsGetRequest($connection);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1007,7 +1027,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Redwood\Models\SsoApp[]',
+                        '\Redwood\Models\App[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1038,13 +1058,14 @@ class DefaultApi
      *
      * Get a list of the SSO apps
      *
+     * @param  string $connection The name of the connection (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function ssoAppsGetAsync()
+    public function ssoAppsGetAsync($connection = null)
     {
-        return $this->ssoAppsGetAsyncWithHttpInfo()
+        return $this->ssoAppsGetAsyncWithHttpInfo($connection)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1057,14 +1078,15 @@ class DefaultApi
      *
      * Get a list of the SSO apps
      *
+     * @param  string $connection The name of the connection (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function ssoAppsGetAsyncWithHttpInfo()
+    public function ssoAppsGetAsyncWithHttpInfo($connection = null)
     {
-        $returnType = '\Redwood\Models\SsoApp[]';
-        $request = $this->ssoAppsGetRequest();
+        $returnType = '\Redwood\Models\App[]';
+        $request = $this->ssoAppsGetRequest($connection);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1106,11 +1128,12 @@ class DefaultApi
     /**
      * Create request for operation 'ssoAppsGet'
      *
+     * @param  string $connection The name of the connection (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function ssoAppsGetRequest()
+    protected function ssoAppsGetRequest($connection = null)
     {
 
         $resourcePath = '/sso/apps';
@@ -1120,7 +1143,302 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($connection !== null) {
+            $queryParams['connection'] = ObjectSerializer::toQueryValue($connection);
+        }
 
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['*/*']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['*/*'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation ssoAppsIdGet
+     *
+     * Get a single SSO App
+     *
+     * @param  string $id The ID of the app (required)
+     * @param  string $connection The name of the connection (optional)
+     *
+     * @throws \Redwood\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Redwood\Models\App[]
+     */
+    public function ssoAppsIdGet($id, $connection = null)
+    {
+        list($response) = $this->ssoAppsIdGetWithHttpInfo($id, $connection);
+        return $response;
+    }
+
+    /**
+     * Operation ssoAppsIdGetWithHttpInfo
+     *
+     * Get a single SSO App
+     *
+     * @param  string $id The ID of the app (required)
+     * @param  string $connection The name of the connection (optional)
+     *
+     * @throws \Redwood\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Redwood\Models\App[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function ssoAppsIdGetWithHttpInfo($id, $connection = null)
+    {
+        $returnType = '\Redwood\Models\App[]';
+        $request = $this->ssoAppsIdGetRequest($id, $connection);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Redwood\Models\App[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation ssoAppsIdGetAsync
+     *
+     * Get a single SSO App
+     *
+     * @param  string $id The ID of the app (required)
+     * @param  string $connection The name of the connection (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function ssoAppsIdGetAsync($id, $connection = null)
+    {
+        return $this->ssoAppsIdGetAsyncWithHttpInfo($id, $connection)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation ssoAppsIdGetAsyncWithHttpInfo
+     *
+     * Get a single SSO App
+     *
+     * @param  string $id The ID of the app (required)
+     * @param  string $connection The name of the connection (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function ssoAppsIdGetAsyncWithHttpInfo($id, $connection = null)
+    {
+        $returnType = '\Redwood\Models\App[]';
+        $request = $this->ssoAppsIdGetRequest($id, $connection);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'ssoAppsIdGet'
+     *
+     * @param  string $id The ID of the app (required)
+     * @param  string $connection The name of the connection (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function ssoAppsIdGetRequest($id, $connection = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling ssoAppsIdGet'
+            );
+        }
+
+        $resourcePath = '/sso/apps/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($connection !== null) {
+            $queryParams['connection'] = ObjectSerializer::toQueryValue($connection);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
 
         // body params
         $_tempBody = null;

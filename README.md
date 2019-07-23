@@ -67,9 +67,11 @@ $apiInstance = new Redwood\Client\DefaultApi(
     $config
 );
 $address = "address_example"; // string | 
+$flush = True; // bool | 
+$connection = "connection_example"; // string | 
 
 try {
-    $result = $apiInstance->geocodePost($address);
+    $result = $apiInstance->geocodePost($address, $flush, $connection);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->geocodePost: ', $e->getMessage(), PHP_EOL;
@@ -121,12 +123,32 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$connection = "connection_example"; // string | The name of the connection
 
 try {
-    $result = $apiInstance->ssoAppsGet();
+    $result = $apiInstance->ssoAppsGet($connection);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->ssoAppsGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = "id_example"; // string | The ID of the app
+$connection = "connection_example"; // string | The name of the connection
+
+try {
+    $result = $apiInstance->ssoAppsIdGet($id, $connection);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->ssoAppsIdGet: ', $e->getMessage(), PHP_EOL;
 }
 
 // Configure OAuth2 access token for authorization: passport
@@ -179,11 +201,13 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listingsConnectionRefGet**](docs/Api/DefaultApi.md#listingsconnectionrefget) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
 *DefaultApi* | [**officesGet**](docs/Api/DefaultApi.md#officesget) | **GET** /offices | 
 *DefaultApi* | [**ssoAppsGet**](docs/Api/DefaultApi.md#ssoappsget) | **GET** /sso/apps | Get a list of the SSO apps
+*DefaultApi* | [**ssoAppsIdGet**](docs/Api/DefaultApi.md#ssoappsidget) | **GET** /sso/apps/{id} | Get a single SSO App
 *DefaultApi* | [**supportConnectionGuideIdGet**](docs/Api/DefaultApi.md#supportconnectionguideidget) | **GET** /support/{connection}/guide/{id} | Get a guide based on its connection reference
 *DefaultApi* | [**usersRefGet**](docs/Api/DefaultApi.md#usersrefget) | **GET** /users/{ref} | Get a user record
 
 ## Documentation For Models
 
+ - [App](docs/Model/App.md)
  - [Dashboard](docs/Model/Dashboard.md)
  - [Error](docs/Model/Error.md)
  - [File](docs/Model/File.md)
@@ -191,7 +215,6 @@ Class | Method | HTTP request | Description
  - [Listing](docs/Model/Listing.md)
  - [Office](docs/Model/Office.md)
  - [Place](docs/Model/Place.md)
- - [SsoApp](docs/Model/SsoApp.md)
  - [Topic](docs/Model/Topic.md)
  - [User](docs/Model/User.md)
 
