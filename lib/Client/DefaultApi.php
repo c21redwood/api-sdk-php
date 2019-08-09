@@ -951,14 +951,15 @@ class DefaultApi
      * Get a list of the SSO apps
      *
      * @param  string $connection The name of the connection (optional)
+     * @param  bool $flush Flush the cache of SSO apps (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Redwood\Models\App[]
      */
-    public function ssoAppsGet($connection = null)
+    public function ssoAppsGet($connection = null, $flush = null)
     {
-        list($response) = $this->ssoAppsGetWithHttpInfo($connection);
+        list($response) = $this->ssoAppsGetWithHttpInfo($connection, $flush);
         return $response;
     }
 
@@ -968,15 +969,16 @@ class DefaultApi
      * Get a list of the SSO apps
      *
      * @param  string $connection The name of the connection (optional)
+     * @param  bool $flush Flush the cache of SSO apps (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Redwood\Models\App[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function ssoAppsGetWithHttpInfo($connection = null)
+    public function ssoAppsGetWithHttpInfo($connection = null, $flush = null)
     {
         $returnType = '\Redwood\Models\App[]';
-        $request = $this->ssoAppsGetRequest($connection);
+        $request = $this->ssoAppsGetRequest($connection, $flush);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1059,13 +1061,14 @@ class DefaultApi
      * Get a list of the SSO apps
      *
      * @param  string $connection The name of the connection (optional)
+     * @param  bool $flush Flush the cache of SSO apps (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function ssoAppsGetAsync($connection = null)
+    public function ssoAppsGetAsync($connection = null, $flush = null)
     {
-        return $this->ssoAppsGetAsyncWithHttpInfo($connection)
+        return $this->ssoAppsGetAsyncWithHttpInfo($connection, $flush)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1079,14 +1082,15 @@ class DefaultApi
      * Get a list of the SSO apps
      *
      * @param  string $connection The name of the connection (optional)
+     * @param  bool $flush Flush the cache of SSO apps (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function ssoAppsGetAsyncWithHttpInfo($connection = null)
+    public function ssoAppsGetAsyncWithHttpInfo($connection = null, $flush = null)
     {
         $returnType = '\Redwood\Models\App[]';
-        $request = $this->ssoAppsGetRequest($connection);
+        $request = $this->ssoAppsGetRequest($connection, $flush);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1129,11 +1133,12 @@ class DefaultApi
      * Create request for operation 'ssoAppsGet'
      *
      * @param  string $connection The name of the connection (optional)
+     * @param  bool $flush Flush the cache of SSO apps (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function ssoAppsGetRequest($connection = null)
+    protected function ssoAppsGetRequest($connection = null, $flush = null)
     {
 
         $resourcePath = '/sso/apps';
@@ -1146,6 +1151,10 @@ class DefaultApi
         // query params
         if ($connection !== null) {
             $queryParams['connection'] = ObjectSerializer::toQueryValue($connection);
+        }
+        // query params
+        if ($flush !== null) {
+            $queryParams['flush'] = ObjectSerializer::toQueryValue($flush);
         }
 
 

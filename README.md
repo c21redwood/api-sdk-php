@@ -124,9 +124,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     $config
 );
 $connection = "connection_example"; // string | The name of the connection
+$flush = true; // bool | Flush the cache of SSO apps
 
 try {
-    $result = $apiInstance->ssoAppsGet($connection);
+    $result = $apiInstance->ssoAppsGet($connection, $flush);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->ssoAppsGet: ', $e->getMessage(), PHP_EOL;

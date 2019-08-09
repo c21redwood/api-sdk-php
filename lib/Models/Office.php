@@ -58,6 +58,7 @@ class Office implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'id' => 'int',
 'name' => 'string',
+'display_name' => 'string',
 'address' => 'string',
 'city' => 'string',
 'state' => 'string',
@@ -74,6 +75,7 @@ class Office implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'id' => null,
 'name' => null,
+'display_name' => null,
 'address' => null,
 'city' => null,
 'state' => null,
@@ -111,6 +113,7 @@ class Office implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'id' => 'id',
 'name' => 'name',
+'display_name' => 'display_name',
 'address' => 'address',
 'city' => 'city',
 'state' => 'state',
@@ -127,6 +130,7 @@ class Office implements ModelInterface, ArrayAccess
     protected static $setters = [
         'id' => 'setId',
 'name' => 'setName',
+'display_name' => 'setDisplayName',
 'address' => 'setAddress',
 'city' => 'setCity',
 'state' => 'setState',
@@ -143,6 +147,7 @@ class Office implements ModelInterface, ArrayAccess
     protected static $getters = [
         'id' => 'getId',
 'name' => 'getName',
+'display_name' => 'getDisplayName',
 'address' => 'getAddress',
 'city' => 'getCity',
 'state' => 'getState',
@@ -211,6 +216,7 @@ class Office implements ModelInterface, ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
         $this->container['address'] = isset($data['address']) ? $data['address'] : null;
         $this->container['city'] = isset($data['city']) ? $data['city'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
@@ -288,6 +294,30 @@ class Office implements ModelInterface, ArrayAccess
     public function setName($name)
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets display_name
+     *
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->container['display_name'];
+    }
+
+    /**
+     * Sets display_name
+     *
+     * @param string $display_name display_name
+     *
+     * @return $this
+     */
+    public function setDisplayName($display_name)
+    {
+        $this->container['display_name'] = $display_name;
 
         return $this;
     }

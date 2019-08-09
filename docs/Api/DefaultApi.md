@@ -170,7 +170,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **ssoAppsGet**
-> \Redwood\Models\App[] ssoAppsGet($connection)
+> \Redwood\Models\App[] ssoAppsGet($connection, $flush)
 
 Get a list of the SSO apps
 
@@ -189,9 +189,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     $config
 );
 $connection = "connection_example"; // string | The name of the connection
+$flush = true; // bool | Flush the cache of SSO apps
 
 try {
-    $result = $apiInstance->ssoAppsGet($connection);
+    $result = $apiInstance->ssoAppsGet($connection, $flush);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->ssoAppsGet: ', $e->getMessage(), PHP_EOL;
@@ -204,6 +205,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection** | **string**| The name of the connection | [optional]
+ **flush** | **bool**| Flush the cache of SSO apps | [optional]
 
 ### Return type
 

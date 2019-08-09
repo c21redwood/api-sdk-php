@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
 **name** | **string** |  | [optional] 
+**display_name** | **string** |  | [optional] 
 **address** | **string** |  | [optional] 
 **city** | **string** |  | [optional] 
 **state** | **string** |  | [optional] 
