@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**geocodePost**](DefaultApi.md#geocodePost) | **POST** /geocode | Geocode the given address
 [**listingsConnectionRefGet**](DefaultApi.md#listingsConnectionRefGet) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
+[**listingsHashedIdGet**](DefaultApi.md#listingsHashedIdGet) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
 [**officesGet**](DefaultApi.md#officesGet) | **GET** /offices | 
 [**ssoAppsGet**](DefaultApi.md#ssoAppsGet) | **GET** /sso/apps | Get a list of the SSO apps
 [**ssoAppsIdGet**](DefaultApi.md#ssoAppsIdGet) | **GET** /sso/apps/{id} | Get a single SSO App
@@ -106,6 +107,57 @@ Name | Type | Description  | Notes
  **connection** | **string**| The MLS connection name |
  **ref** | **string**| The ref to use to do the lookup |
  **field** | **string**| The field to do the lookup against | [optional]
+
+### Return type
+
+[**\Redwood\Models\Listing**](../Model/Listing.md)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **listingsHashedIdGet**
+> \Redwood\Models\Listing listingsHashedIdGet($hashed_id)
+
+Get a Listing object by hashed ID
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$hashed_id = "hashed_id_example"; // string | The hashed ID of the listing
+
+try {
+    $result = $apiInstance->listingsHashedIdGet($hashed_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->listingsHashedIdGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **hashed_id** | **string**| The hashed ID of the listing |
 
 ### Return type
 

@@ -106,6 +106,24 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$hashed_id = "hashed_id_example"; // string | The hashed ID of the listing
+
+try {
+    $result = $apiInstance->listingsHashedIdGet($hashed_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->listingsHashedIdGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
     $result = $apiInstance->officesGet();
@@ -200,6 +218,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**geocodePost**](docs/Api/DefaultApi.md#geocodepost) | **POST** /geocode | Geocode the given address
 *DefaultApi* | [**listingsConnectionRefGet**](docs/Api/DefaultApi.md#listingsconnectionrefget) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
+*DefaultApi* | [**listingsHashedIdGet**](docs/Api/DefaultApi.md#listingshashedidget) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
 *DefaultApi* | [**officesGet**](docs/Api/DefaultApi.md#officesget) | **GET** /offices | 
 *DefaultApi* | [**ssoAppsGet**](docs/Api/DefaultApi.md#ssoappsget) | **GET** /sso/apps | Get a list of the SSO apps
 *DefaultApi* | [**ssoAppsIdGet**](docs/Api/DefaultApi.md#ssoappsidget) | **GET** /sso/apps/{id} | Get a single SSO App
