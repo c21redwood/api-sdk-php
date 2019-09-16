@@ -66,6 +66,60 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$email = "email_example"; // string | 
+
+try {
+    $result = $apiInstance->contactsEmailGet($email);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->contactsEmailGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = "id_example"; // string | 
+
+try {
+    $result = $apiInstance->contactsIdGet($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->contactsIdGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$body = new \stdClass; // object | The contact data
+
+try {
+    $result = $apiInstance->contactsPost($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->contactsPost: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $address = "address_example"; // string | 
 $flush = True; // bool | 
 $connection = "connection_example"; // string | 
@@ -86,12 +140,11 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connection = "connection_example"; // string | The MLS connection name
+$connection = "connection_example"; // string | The Listings connection name
 $ref = "ref_example"; // string | The ref to use to do the lookup
-$field = "field_example"; // string | The field to do the lookup against
 
 try {
-    $result = $apiInstance->listingsConnectionRefGet($connection, $ref, $field);
+    $result = $apiInstance->listingsConnectionRefGet($connection, $ref);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->listingsConnectionRefGet: ', $e->getMessage(), PHP_EOL;
@@ -113,6 +166,23 @@ try {
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->listingsHashedIdGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->meGet();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->meGet: ', $e->getMessage(), PHP_EOL;
 }
 
 // Configure OAuth2 access token for authorization: passport
@@ -216,9 +286,13 @@ All URIs are relative to *///api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**contactsEmailGet**](docs/Api/DefaultApi.md#contactsemailget) | **GET** /contacts/email | Get a Contact by email
+*DefaultApi* | [**contactsIdGet**](docs/Api/DefaultApi.md#contactsidget) | **GET** /contacts/{id} | Get a Contact by ID
+*DefaultApi* | [**contactsPost**](docs/Api/DefaultApi.md#contactspost) | **POST** /contacts | Create a Contact in the CRM
 *DefaultApi* | [**geocodePost**](docs/Api/DefaultApi.md#geocodepost) | **POST** /geocode | Geocode the given address
 *DefaultApi* | [**listingsConnectionRefGet**](docs/Api/DefaultApi.md#listingsconnectionrefget) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
 *DefaultApi* | [**listingsHashedIdGet**](docs/Api/DefaultApi.md#listingshashedidget) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
+*DefaultApi* | [**meGet**](docs/Api/DefaultApi.md#meget) | **GET** /me | Get data about the authenticated user
 *DefaultApi* | [**officesGet**](docs/Api/DefaultApi.md#officesget) | **GET** /offices | 
 *DefaultApi* | [**ssoAppsGet**](docs/Api/DefaultApi.md#ssoappsget) | **GET** /sso/apps | Get a list of the SSO apps
 *DefaultApi* | [**ssoAppsIdGet**](docs/Api/DefaultApi.md#ssoappsidget) | **GET** /sso/apps/{id} | Get a single SSO App
@@ -228,6 +302,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [App](docs/Model/App.md)
+ - [Contact](docs/Model/Contact.md)
  - [Dashboard](docs/Model/Dashboard.md)
  - [Error](docs/Model/Error.md)
  - [File](docs/Model/File.md)

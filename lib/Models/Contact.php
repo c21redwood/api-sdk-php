@@ -1,6 +1,6 @@
 <?php
 /**
- * User
+ * Contact
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Redwood\ObjectSerializer;
 
 /**
- * User Class Doc Comment
+ * Contact Class Doc Comment
  *
  * @category Class
  * @package  Redwood
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class User implements ModelInterface, ArrayAccess
+class Contact implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class User implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'User';
+    protected static $swaggerModelName = 'Contact';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,13 +59,13 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'int',
 'created_at' => '\DateTime',
 'updated_at' => '\DateTime',
-'email' => 'string',
 'name' => 'string',
 'first_name' => 'string',
 'last_name' => 'string',
-'phone' => 'string',
+'email' => 'string',
 'image' => 'string',
-'office' => '\Redwood\Models\Office'    ];
+'lat' => 'float',
+'lng' => 'float'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -76,13 +76,13 @@ class User implements ModelInterface, ArrayAccess
         'id' => null,
 'created_at' => 'date-time',
 'updated_at' => 'date-time',
-'email' => 'email',
 'name' => null,
 'first_name' => null,
 'last_name' => null,
-'phone' => null,
+'email' => null,
 'image' => null,
-'office' => null    ];
+'lat' => 'float',
+'lng' => 'float'    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -114,13 +114,13 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'id',
 'created_at' => 'created_at',
 'updated_at' => 'updated_at',
-'email' => 'email',
 'name' => 'name',
 'first_name' => 'first_name',
 'last_name' => 'last_name',
-'phone' => 'phone',
+'email' => 'email',
 'image' => 'image',
-'office' => 'office'    ];
+'lat' => 'lat',
+'lng' => 'lng'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -131,13 +131,13 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'setId',
 'created_at' => 'setCreatedAt',
 'updated_at' => 'setUpdatedAt',
-'email' => 'setEmail',
 'name' => 'setName',
 'first_name' => 'setFirstName',
 'last_name' => 'setLastName',
-'phone' => 'setPhone',
+'email' => 'setEmail',
 'image' => 'setImage',
-'office' => 'setOffice'    ];
+'lat' => 'setLat',
+'lng' => 'setLng'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -148,13 +148,13 @@ class User implements ModelInterface, ArrayAccess
         'id' => 'getId',
 'created_at' => 'getCreatedAt',
 'updated_at' => 'getUpdatedAt',
-'email' => 'getEmail',
 'name' => 'getName',
 'first_name' => 'getFirstName',
 'last_name' => 'getLastName',
-'phone' => 'getPhone',
+'email' => 'getEmail',
 'image' => 'getImage',
-'office' => 'getOffice'    ];
+'lat' => 'getLat',
+'lng' => 'getLng'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -217,13 +217,13 @@ class User implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['first_name'] = isset($data['first_name']) ? $data['first_name'] : null;
         $this->container['last_name'] = isset($data['last_name']) ? $data['last_name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
+        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
         $this->container['image'] = isset($data['image']) ? $data['image'] : null;
-        $this->container['office'] = isset($data['office']) ? $data['office'] : null;
+        $this->container['lat'] = isset($data['lat']) ? $data['lat'] : null;
+        $this->container['lng'] = isset($data['lng']) ? $data['lng'] : null;
     }
 
     /**
@@ -323,30 +323,6 @@ class User implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string $email email
-     *
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string
@@ -419,25 +395,25 @@ class User implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets phone
+     * Gets email
      *
      * @return string
      */
-    public function getPhone()
+    public function getEmail()
     {
-        return $this->container['phone'];
+        return $this->container['email'];
     }
 
     /**
-     * Sets phone
+     * Sets email
      *
-     * @param string $phone phone
+     * @param string $email email
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setEmail($email)
     {
-        $this->container['phone'] = $phone;
+        $this->container['email'] = $email;
 
         return $this;
     }
@@ -467,25 +443,49 @@ class User implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets office
+     * Gets lat
      *
-     * @return \Redwood\Models\Office
+     * @return float
      */
-    public function getOffice()
+    public function getLat()
     {
-        return $this->container['office'];
+        return $this->container['lat'];
     }
 
     /**
-     * Sets office
+     * Sets lat
      *
-     * @param \Redwood\Models\Office $office office
+     * @param float $lat lat
      *
      * @return $this
      */
-    public function setOffice($office)
+    public function setLat($lat)
     {
-        $this->container['office'] = $office;
+        $this->container['lat'] = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Gets lng
+     *
+     * @return float
+     */
+    public function getLng()
+    {
+        return $this->container['lng'];
+    }
+
+    /**
+     * Sets lng
+     *
+     * @param float $lng lng
+     *
+     * @return $this
+     */
+    public function setLng($lng)
+    {
+        $this->container['lng'] = $lng;
 
         return $this;
     }

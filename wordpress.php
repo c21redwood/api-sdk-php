@@ -43,6 +43,9 @@ function redwood_api_access_token() : ?String
       return $token;
     }
   }
+  if (trim($token = get_field('redwood_api_access_token', 'option'))) {
+    return $token;
+  }
   if (defined('REDWOOD_API_ACCESS_TOKEN')) {
     return constant('REDWOOD_API_ACCESS_TOKEN');
   }
@@ -54,26 +57,30 @@ function redwood_api_access_token() : ?String
 
 /**
  * Get the Redwood SDK API Client
+ * @param string|null The access token to use; omit to use whatever is returned by redwood_api_access_token()
+ * personal access token should be used
  * @return \Redwood\Client\DefaultApi
  */
-function redwood()
+function redwood($accessToken = null)
 {
   static $api;
 
-  if (empty($api)) {
-    $config = Redwood\Configuration::getDefaultConfiguration()
-      ->setHost(env('REDWOOD_API_HOST'))
-      ->setAccessToken(redwood_api_access_token());
+  $accessToken = $accessToken ?: redwood_api_access_token();
 
-    $api = new Redwood\Client\DefaultApi(
+  if (empty($api[$accessToken])) {
+    $config = Redwood\Configuration::getDefaultConfiguration()
+      ->setHost(env('REDWOOD_API_HOST').'/api/v1')
+      ->setAccessToken($accessToken);
+
+    $api[$accessToken] = new Redwood\Client\DefaultApi(
       new GuzzleHttp\Client([
-        'verify' => false,
+        'verify' => env('SSL_VERIFY', false),
       ]),
       $config
     );
   }
 
-  return $api;
+  return $api[$accessToken];
 }
 
 /**
@@ -205,4 +212,34 @@ function redwood_get_listing_by_mls($connection, $ref, $field = 'mls_id', $flush
   return cache_remember($cacheKey, 30, function() use ($connection, $ref, $field) {
     return redwood()->listingsConnectionRefGet($connection, $ref, $field);
   });
+}
+
+/**
+ * This function should be called to ensure that a Contact record
+ * exists for the given email address.
+ * @param $email
+ * @param $source
+ * @param array $data
+ * @return \Redwood\Models\Contact
+ * @throws InvalidArgumentException If the given email is invalid
+ * @throws \Redwood\ApiException On request failure
+ */
+function redwood_create_contact($email, $source, array $data = [])
+{
+  if (!$email = filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    throw new \InvalidArgumentException("The email address given is invalid");
+  }
+  if (!$source = trim($source)) {
+    throw new \InvalidArgumentException("The source argument is required");
+  }
+
+  return redwood()->contactsPost(
+    (object) array_merge(
+      $data,
+      [
+        'email' => $email,
+        'source' => $source,
+      ]
+    )
+  );
 }
