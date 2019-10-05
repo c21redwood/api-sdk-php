@@ -8,10 +8,12 @@ Method | HTTP request | Description
 [**contactsIdGet**](DefaultApi.md#contactsIdGet) | **GET** /contacts/{id} | Get a Contact by ID
 [**contactsPost**](DefaultApi.md#contactsPost) | **POST** /contacts | Create a Contact in the CRM
 [**geocodePost**](DefaultApi.md#geocodePost) | **POST** /geocode | Geocode the given address
+[**listingsConnectionPost**](DefaultApi.md#listingsConnectionPost) | **POST** /listings/{connection} | Create a  draft Listing object in the given MLS
 [**listingsConnectionRefGet**](DefaultApi.md#listingsConnectionRefGet) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
 [**listingsHashedIdGet**](DefaultApi.md#listingsHashedIdGet) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
 [**meGet**](DefaultApi.md#meGet) | **GET** /me | Get data about the authenticated user
 [**officesGet**](DefaultApi.md#officesGet) | **GET** /offices | 
+[**rolesGet**](DefaultApi.md#rolesGet) | **GET** /roles | Get a list of all Roles and counts of Users in each
 [**ssoAppsGet**](DefaultApi.md#ssoAppsGet) | **GET** /sso/apps | Get a list of the SSO apps
 [**ssoAppsIdGet**](DefaultApi.md#ssoAppsIdGet) | **GET** /sso/apps/{id} | Get a single SSO App
 [**supportConnectionGuideIdGet**](DefaultApi.md#supportConnectionGuideIdGet) | **GET** /support/{connection}/guide/{id} | Get a guide based on its connection reference
@@ -225,6 +227,57 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **listingsConnectionPost**
+> \Redwood\Models\Listing listingsConnectionPost($connection)
+
+Create a  draft Listing object in the given MLS
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$connection = "connection_example"; // string | The Listings connection name
+
+try {
+    $result = $apiInstance->listingsConnectionPost($connection);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->listingsConnectionPost: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **connection** | **string**| The Listings connection name |
+
+### Return type
+
+[**\Redwood\Models\Listing**](../Model/Listing.md)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **listingsConnectionRefGet**
 > \Redwood\Models\Listing listingsConnectionRefGet($connection, $ref)
 
@@ -411,6 +464,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Redwood\Models\Office[]**](../Model/Office.md)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **rolesGet**
+> \Redwood\Models\Role[] rolesGet()
+
+Get a list of all Roles and counts of Users in each
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->rolesGet();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->rolesGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Redwood\Models\Role[]**](../Model/Role.md)
 
 ### Authorization
 

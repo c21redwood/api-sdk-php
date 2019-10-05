@@ -123,6 +123,11 @@ function redwood_get_sso_app_by_url($url, $flush = false)
   return false;
 }
 
+/**
+ * Load an array of Offices
+ * @param bool $flush
+ * @return array|null
+ */
 function redwood_offices($flush = false) : ?array
 {
   $cacheKey = 'redwood_offices';
@@ -136,6 +141,27 @@ function redwood_offices($flush = false) : ?array
       throw new \Exception("Failed to load offices from Redwood API");
     }
     return $offices;
+  });
+}
+
+/**
+ * Load an array of Roles
+ * @param bool $flush
+ * @return array|null
+ */
+function redwood_roles($flush = false) : ?array
+{
+  $cacheKey = 'redwood_roles';
+
+  if ($flush) {
+    cache_forget($cacheKey);
+  }
+
+  return cache_remember($cacheKey, 5, function() {
+    if (!$roles = redwood()->rolesGet()) {
+      throw new \Exception("Failed to load roles from Redwood API");
+    }
+    return $roles;
   });
 }
 
