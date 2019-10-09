@@ -65,7 +65,8 @@ class User implements ModelInterface, ArrayAccess
 'last_name' => 'string',
 'phone' => 'string',
 'image' => 'string',
-'office' => '\Redwood\Models\Office'    ];
+'office' => '\Redwood\Models\Office',
+'roles' => '\Redwood\Models\Role[]'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -82,7 +83,8 @@ class User implements ModelInterface, ArrayAccess
 'last_name' => null,
 'phone' => null,
 'image' => null,
-'office' => null    ];
+'office' => null,
+'roles' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -120,7 +122,8 @@ class User implements ModelInterface, ArrayAccess
 'last_name' => 'last_name',
 'phone' => 'phone',
 'image' => 'image',
-'office' => 'office'    ];
+'office' => 'office',
+'roles' => 'roles'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -137,7 +140,8 @@ class User implements ModelInterface, ArrayAccess
 'last_name' => 'setLastName',
 'phone' => 'setPhone',
 'image' => 'setImage',
-'office' => 'setOffice'    ];
+'office' => 'setOffice',
+'roles' => 'setRoles'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -154,7 +158,8 @@ class User implements ModelInterface, ArrayAccess
 'last_name' => 'getLastName',
 'phone' => 'getPhone',
 'image' => 'getImage',
-'office' => 'getOffice'    ];
+'office' => 'getOffice',
+'roles' => 'getRoles'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -224,6 +229,7 @@ class User implements ModelInterface, ArrayAccess
         $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
         $this->container['image'] = isset($data['image']) ? $data['image'] : null;
         $this->container['office'] = isset($data['office']) ? $data['office'] : null;
+        $this->container['roles'] = isset($data['roles']) ? $data['roles'] : null;
     }
 
     /**
@@ -486,6 +492,30 @@ class User implements ModelInterface, ArrayAccess
     public function setOffice($office)
     {
         $this->container['office'] = $office;
+
+        return $this;
+    }
+
+    /**
+     * Gets roles
+     *
+     * @return \Redwood\Models\Role[]
+     */
+    public function getRoles()
+    {
+        return $this->container['roles'];
+    }
+
+    /**
+     * Sets roles
+     *
+     * @param \Redwood\Models\Role[] $roles roles
+     *
+     * @return $this
+     */
+    public function setRoles($roles)
+    {
+        $this->container['roles'] = $roles;
 
         return $this;
     }

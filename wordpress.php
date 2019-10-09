@@ -214,7 +214,7 @@ function redwood_get_user($user = null, $field = 'id', $flush = false)
     cache_forget($cacheKey);
   }
 
-  return cache_remember($cacheKey, 30, function() use ($user, $field) {
+  return cache_remember($cacheKey, 1, function() use ($user, $field) {
     return redwood()->usersRefGet($user, $field);
   });
 }
@@ -268,4 +268,51 @@ function redwood_create_contact($email, $source, array $data = [])
       ]
     )
   );
+}
+
+
+if (function_exists('add_action')) {
+
+  /**
+   * If the user exists in accessRedwood, determine which Role
+   * the user should have in this WordPress install.
+   * @param $user_id
+   */
+  $redwoodSetUserRole = function ($user_id) {
+    $user = get_user_by('ID', $user_id);
+
+    $currentRole = !empty($user->roles[0]) ? $user->roles[0] : null;
+
+    try {
+      $remote = redwood_get_user($user->user_login, 'email', true);
+    } catch (\Redwood\ApiException $e) {
+      if ($e->getCode() === 404) {
+        // user doesn't exist
+      } else {
+        throw $e;
+      }
+    }
+
+    if ($remote) {
+      $roleShouldBe = $currentRole ?: 'subscriber';
+
+      $remoteRoles = array_map(function ($role) {
+        return $role->getName();
+      }, $remote->getRoles());
+
+      if (in_array('administrator', $remoteRoles) || in_array('company-owner', $remoteRoles)) {
+        $roleShouldBe = 'administrator';
+      }
+
+      $roleShouldBe = apply_filters('redwood_set_user_role', $roleShouldBe, $remoteRoles, $remote, $user, $user_id);
+
+      if ($currentRole !== $roleShouldBe && !empty($roleShouldBe)) {
+        $user->set_role($roleShouldBe);
+      }
+    }
+  };
+
+  add_action('profile_update', $redwoodSetUserRole);
+  add_action('user_register', $redwoodSetUserRole);
+
 }
