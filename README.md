@@ -312,6 +312,63 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->usersRefGet: ', $e->getMessage(), PHP_EOL;
 }
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$address = "address_example"; // string | 
+$place_id = "place_id_example"; // string | 
+
+try {
+    $result = $apiInstance->valuationsAnalyzePost($address, $place_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->valuationsAnalyzePost: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$address = "address_example"; // string | 
+$place_id = "place_id_example"; // string | 
+
+try {
+    $result = $apiInstance->valuationsReportsDynamicPost($address, $place_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->valuationsReportsDynamicPost: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$address = "address_example"; // string | 
+$place_id = "place_id_example"; // string | 
+
+try {
+    $result = $apiInstance->valuationsReportsStaticPost($address, $place_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->valuationsReportsStaticPost: ', $e->getMessage(), PHP_EOL;
+}
 ?>
 ```
 
@@ -335,12 +392,16 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**ssoAppsIdGet**](docs/Api/DefaultApi.md#ssoappsidget) | **GET** /sso/apps/{id} | Get a single SSO App
 *DefaultApi* | [**supportConnectionGuideIdGet**](docs/Api/DefaultApi.md#supportconnectionguideidget) | **GET** /support/{connection}/guide/{id} | Get a guide based on its connection reference
 *DefaultApi* | [**usersRefGet**](docs/Api/DefaultApi.md#usersrefget) | **GET** /users/{ref} | Get a user record
+*DefaultApi* | [**valuationsAnalyzePost**](docs/Api/DefaultApi.md#valuationsanalyzepost) | **POST** /valuations/analyze | Get a ValueAnalysis for the given address or place
+*DefaultApi* | [**valuationsReportsDynamicPost**](docs/Api/DefaultApi.md#valuationsreportsdynamicpost) | **POST** /valuations/reports/dynamic | Get a DynamicReport for the given address or place
+*DefaultApi* | [**valuationsReportsStaticPost**](docs/Api/DefaultApi.md#valuationsreportsstaticpost) | **POST** /valuations/reports/static | Get a StaticReport for the given address or place
 
 ## Documentation For Models
 
  - [App](docs/Model/App.md)
  - [Contact](docs/Model/Contact.md)
  - [Dashboard](docs/Model/Dashboard.md)
+ - [DynamicReport](docs/Model/DynamicReport.md)
  - [Error](docs/Model/Error.md)
  - [File](docs/Model/File.md)
  - [Guide](docs/Model/Guide.md)
@@ -348,8 +409,10 @@ Class | Method | HTTP request | Description
  - [Office](docs/Model/Office.md)
  - [Place](docs/Model/Place.md)
  - [Role](docs/Model/Role.md)
+ - [StaticReport](docs/Model/StaticReport.md)
  - [Topic](docs/Model/Topic.md)
  - [User](docs/Model/User.md)
+ - [ValueAnalysis](docs/Model/ValueAnalysis.md)
 
 ## Documentation For Authorization
 
