@@ -1,6 +1,6 @@
 <?php
 /**
- * ValueAnalysis
+ * MlsOfficeStats
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Redwood\ObjectSerializer;
 
 /**
- * ValueAnalysis Class Doc Comment
+ * MlsOfficeStats Class Doc Comment
  *
  * @category Class
  * @package  Redwood
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ValueAnalysis implements ModelInterface, ArrayAccess
+class MlsOfficeStats implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ValueAnalysis';
+    protected static $swaggerModelName = 'MlsOfficeStats';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +56,10 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'price' => 'float',
-'data' => 'object'    ];
+        'stat_sales_ltm' => 'int',
+'_353903392' => 'int',
+'stat_agent_count' => 'int',
+'stat_real_satisfied_rating' => 'float'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -65,8 +67,10 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'price' => 'float',
-'data' => null    ];
+        'stat_sales_ltm' => null,
+'_353903392' => null,
+'stat_agent_count' => null,
+'stat_real_satisfied_rating' => 'float'    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -95,8 +99,10 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'price' => 'price',
-'data' => 'data'    ];
+        'stat_sales_ltm' => 'stat_sales_ltm',
+'_353903392' => '353903392',
+'stat_agent_count' => 'stat_agent_count',
+'stat_real_satisfied_rating' => 'stat_real_satisfied_rating'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -104,8 +110,10 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'price' => 'setPrice',
-'data' => 'setData'    ];
+        'stat_sales_ltm' => 'setStatSalesLtm',
+'_353903392' => 'set353903392',
+'stat_agent_count' => 'setStatAgentCount',
+'stat_real_satisfied_rating' => 'setStatRealSatisfiedRating'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -113,8 +121,10 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'price' => 'getPrice',
-'data' => 'getData'    ];
+        'stat_sales_ltm' => 'getStatSalesLtm',
+'_353903392' => 'get353903392',
+'stat_agent_count' => 'getStatAgentCount',
+'stat_real_satisfied_rating' => 'getStatRealSatisfiedRating'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -174,8 +184,10 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
-        $this->container['data'] = isset($data['data']) ? $data['data'] : null;
+        $this->container['stat_sales_ltm'] = isset($data['stat_sales_ltm']) ? $data['stat_sales_ltm'] : null;
+        $this->container['_353903392'] = isset($data['_353903392']) ? $data['_353903392'] : null;
+        $this->container['stat_agent_count'] = isset($data['stat_agent_count']) ? $data['stat_agent_count'] : null;
+        $this->container['stat_real_satisfied_rating'] = isset($data['stat_real_satisfied_rating']) ? $data['stat_real_satisfied_rating'] : null;
     }
 
     /**
@@ -203,49 +215,97 @@ class ValueAnalysis implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets price
+     * Gets stat_sales_ltm
      *
-     * @return float
+     * @return int
      */
-    public function getPrice()
+    public function getStatSalesLtm()
     {
-        return $this->container['price'];
+        return $this->container['stat_sales_ltm'];
     }
 
     /**
-     * Sets price
+     * Sets stat_sales_ltm
      *
-     * @param float $price price
+     * @param int $stat_sales_ltm stat_sales_ltm
      *
      * @return $this
      */
-    public function setPrice($price)
+    public function setStatSalesLtm($stat_sales_ltm)
     {
-        $this->container['price'] = $price;
+        $this->container['stat_sales_ltm'] = $stat_sales_ltm;
 
         return $this;
     }
 
     /**
-     * Gets data
+     * Gets _353903392
      *
-     * @return object
+     * @return int
      */
-    public function getData()
+    public function get353903392()
     {
-        return $this->container['data'];
+        return $this->container['_353903392'];
     }
 
     /**
-     * Sets data
+     * Sets _353903392
      *
-     * @param object $data data
+     * @param int $_353903392 _353903392
      *
      * @return $this
      */
-    public function setData($data)
+    public function set353903392($_353903392)
     {
-        $this->container['data'] = $data;
+        $this->container['_353903392'] = $_353903392;
+
+        return $this;
+    }
+
+    /**
+     * Gets stat_agent_count
+     *
+     * @return int
+     */
+    public function getStatAgentCount()
+    {
+        return $this->container['stat_agent_count'];
+    }
+
+    /**
+     * Sets stat_agent_count
+     *
+     * @param int $stat_agent_count stat_agent_count
+     *
+     * @return $this
+     */
+    public function setStatAgentCount($stat_agent_count)
+    {
+        $this->container['stat_agent_count'] = $stat_agent_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets stat_real_satisfied_rating
+     *
+     * @return float
+     */
+    public function getStatRealSatisfiedRating()
+    {
+        return $this->container['stat_real_satisfied_rating'];
+    }
+
+    /**
+     * Sets stat_real_satisfied_rating
+     *
+     * @param float $stat_real_satisfied_rating stat_real_satisfied_rating
+     *
+     * @return $this
+     */
+    public function setStatRealSatisfiedRating($stat_real_satisfied_rating)
+    {
+        $this->container['stat_real_satisfied_rating'] = $stat_real_satisfied_rating;
 
         return $this;
     }

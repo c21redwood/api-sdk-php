@@ -12,7 +12,9 @@ Method | HTTP request | Description
 [**listingsConnectionRefGet**](DefaultApi.md#listingsConnectionRefGet) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
 [**listingsHashedIdGet**](DefaultApi.md#listingsHashedIdGet) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
 [**meGet**](DefaultApi.md#meGet) | **GET** /me | Get data about the authenticated user
+[**officesConnectionRefStatsGet**](DefaultApi.md#officesConnectionRefStatsGet) | **GET** /offices/{connection}/{ref}/stats | 
 [**officesGet**](DefaultApi.md#officesGet) | **GET** /offices | 
+[**officesStatsGet**](DefaultApi.md#officesStatsGet) | **GET** /offices/stats | 
 [**rolesGet**](DefaultApi.md#rolesGet) | **GET** /roles | Get a list of all Roles and counts of Users in each
 [**ssoAppsGet**](DefaultApi.md#ssoAppsGet) | **GET** /sso/apps | Get a list of the SSO apps
 [**ssoAppsIdGet**](DefaultApi.md#ssoAppsIdGet) | **GET** /sso/apps/{id} | Get a single SSO App
@@ -432,6 +434,60 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **officesConnectionRefStatsGet**
+> officesConnectionRefStatsGet($connection, $ref, $field)
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$connection = "connection_example"; // string | The MLS connection to query
+$ref = "ref_example"; // string | The reference value of the office
+$field = "field_example"; // string | The field to query; defaults to mls_key
+
+try {
+    $apiInstance->officesConnectionRefStatsGet($connection, $ref, $field);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->officesConnectionRefStatsGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **connection** | **string**| The MLS connection to query |
+ **ref** | **string**| The reference value of the office |
+ **field** | **string**| The field to query; defaults to mls_key | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **officesGet**
 > \Redwood\Models\Office[] officesGet()
 
@@ -467,6 +523,52 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Redwood\Models\Office[]**](../Model/Office.md)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **officesStatsGet**
+> officesStatsGet()
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $apiInstance->officesStatsGet();
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->officesStatsGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

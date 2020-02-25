@@ -212,12 +212,47 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$connection = "connection_example"; // string | The MLS connection to query
+$ref = "ref_example"; // string | The reference value of the office
+$field = "field_example"; // string | The field to query; defaults to mls_key
+
+try {
+    $apiInstance->officesConnectionRefStatsGet($connection, $ref, $field);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->officesConnectionRefStatsGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
     $result = $apiInstance->officesGet();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->officesGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $apiInstance->officesStatsGet();
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->officesStatsGet: ', $e->getMessage(), PHP_EOL;
 }
 
 // Configure OAuth2 access token for authorization: passport
@@ -386,7 +421,9 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listingsConnectionRefGet**](docs/Api/DefaultApi.md#listingsconnectionrefget) | **GET** /listings/{connection}/{ref} | Get a Listing object from an MLS
 *DefaultApi* | [**listingsHashedIdGet**](docs/Api/DefaultApi.md#listingshashedidget) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
 *DefaultApi* | [**meGet**](docs/Api/DefaultApi.md#meget) | **GET** /me | Get data about the authenticated user
+*DefaultApi* | [**officesConnectionRefStatsGet**](docs/Api/DefaultApi.md#officesconnectionrefstatsget) | **GET** /offices/{connection}/{ref}/stats | 
 *DefaultApi* | [**officesGet**](docs/Api/DefaultApi.md#officesget) | **GET** /offices | 
+*DefaultApi* | [**officesStatsGet**](docs/Api/DefaultApi.md#officesstatsget) | **GET** /offices/stats | 
 *DefaultApi* | [**rolesGet**](docs/Api/DefaultApi.md#rolesget) | **GET** /roles | Get a list of all Roles and counts of Users in each
 *DefaultApi* | [**ssoAppsGet**](docs/Api/DefaultApi.md#ssoappsget) | **GET** /sso/apps | Get a list of the SSO apps
 *DefaultApi* | [**ssoAppsIdGet**](docs/Api/DefaultApi.md#ssoappsidget) | **GET** /sso/apps/{id} | Get a single SSO App
@@ -406,6 +443,7 @@ Class | Method | HTTP request | Description
  - [File](docs/Model/File.md)
  - [Guide](docs/Model/Guide.md)
  - [Listing](docs/Model/Listing.md)
+ - [MlsOfficeStats](docs/Model/MlsOfficeStats.md)
  - [Office](docs/Model/Office.md)
  - [Place](docs/Model/Place.md)
  - [Role](docs/Model/Role.md)
