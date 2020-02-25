@@ -217,7 +217,8 @@ $ref = "ref_example"; // string | The reference value of the office
 $field = "field_example"; // string | The field to query; defaults to mls_key
 
 try {
-    $apiInstance->officesConnectionRefStatsGet($connection, $ref, $field);
+    $result = $apiInstance->officesConnectionRefStatsGet($connection, $ref, $field);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->officesConnectionRefStatsGet: ', $e->getMessage(), PHP_EOL;
 }
@@ -250,7 +251,8 @@ $apiInstance = new Redwood\Client\DefaultApi(
 );
 
 try {
-    $apiInstance->officesStatsGet();
+    $result = $apiInstance->officesStatsGet();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->officesStatsGet: ', $e->getMessage(), PHP_EOL;
 }
@@ -443,7 +445,6 @@ Class | Method | HTTP request | Description
  - [File](docs/Model/File.md)
  - [Guide](docs/Model/Guide.md)
  - [Listing](docs/Model/Listing.md)
- - [MlsOfficeStats](docs/Model/MlsOfficeStats.md)
  - [Office](docs/Model/Office.md)
  - [Place](docs/Model/Place.md)
  - [Role](docs/Model/Role.md)

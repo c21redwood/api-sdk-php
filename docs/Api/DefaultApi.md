@@ -435,7 +435,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **officesConnectionRefStatsGet**
-> officesConnectionRefStatsGet($connection, $ref, $field)
+> object officesConnectionRefStatsGet($connection, $ref, $field)
 
 
 
@@ -458,7 +458,8 @@ $ref = "ref_example"; // string | The reference value of the office
 $field = "field_example"; // string | The field to query; defaults to mls_key
 
 try {
-    $apiInstance->officesConnectionRefStatsGet($connection, $ref, $field);
+    $result = $apiInstance->officesConnectionRefStatsGet($connection, $ref, $field);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->officesConnectionRefStatsGet: ', $e->getMessage(), PHP_EOL;
 }
@@ -475,7 +476,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -536,7 +537,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **officesStatsGet**
-> officesStatsGet()
+> object officesStatsGet()
 
 
 
@@ -556,7 +557,8 @@ $apiInstance = new Redwood\Client\DefaultApi(
 );
 
 try {
-    $apiInstance->officesStatsGet();
+    $result = $apiInstance->officesStatsGet();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->officesStatsGet: ', $e->getMessage(), PHP_EOL;
 }
@@ -568,7 +570,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 

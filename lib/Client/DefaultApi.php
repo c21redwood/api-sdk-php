@@ -2334,11 +2334,12 @@ class DefaultApi
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return object
      */
     public function officesConnectionRefStatsGet($connection, $ref, $field = null)
     {
-        $this->officesConnectionRefStatsGetWithHttpInfo($connection, $ref, $field);
+        list($response) = $this->officesConnectionRefStatsGetWithHttpInfo($connection, $ref, $field);
+        return $response;
     }
 
     /**
@@ -2350,11 +2351,11 @@ class DefaultApi
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
     public function officesConnectionRefStatsGetWithHttpInfo($connection, $ref, $field = null)
     {
-        $returnType = '';
+        $returnType = 'object';
         $request = $this->officesConnectionRefStatsGetRequest($connection, $ref, $field);
 
         try {
@@ -2385,10 +2386,32 @@ class DefaultApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -2446,14 +2469,28 @@ class DefaultApi
      */
     public function officesConnectionRefStatsGetAsyncWithHttpInfo($connection, $ref, $field = null)
     {
-        $returnType = '';
+        $returnType = 'object';
         $request = $this->officesConnectionRefStatsGetRequest($connection, $ref, $field);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -2859,11 +2896,12 @@ class DefaultApi
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return object
      */
     public function officesStatsGet()
     {
-        $this->officesStatsGetWithHttpInfo();
+        list($response) = $this->officesStatsGetWithHttpInfo();
+        return $response;
     }
 
     /**
@@ -2872,11 +2910,11 @@ class DefaultApi
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
     public function officesStatsGetWithHttpInfo()
     {
-        $returnType = '';
+        $returnType = 'object';
         $request = $this->officesStatsGetRequest();
 
         try {
@@ -2907,10 +2945,32 @@ class DefaultApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -2962,14 +3022,28 @@ class DefaultApi
      */
     public function officesStatsGetAsyncWithHttpInfo()
     {
-        $returnType = '';
+        $returnType = 'object';
         $request = $this->officesStatsGetRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
