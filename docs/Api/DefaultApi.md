@@ -13,12 +13,15 @@ Method | HTTP request | Description
 [**listingsHashedIdGet**](DefaultApi.md#listingsHashedIdGet) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
 [**meGet**](DefaultApi.md#meGet) | **GET** /me | Get data about the authenticated user
 [**officesConnectionRefStatsGet**](DefaultApi.md#officesConnectionRefStatsGet) | **GET** /offices/{connection}/{ref}/stats | 
+[**officesConnectionRefTestimonialsGet**](DefaultApi.md#officesConnectionRefTestimonialsGet) | **GET** /offices/{connection}/{ref}/testimonials | 
 [**officesGet**](DefaultApi.md#officesGet) | **GET** /offices | 
 [**officesStatsGet**](DefaultApi.md#officesStatsGet) | **GET** /offices/stats | 
 [**rolesGet**](DefaultApi.md#rolesGet) | **GET** /roles | Get a list of all Roles and counts of Users in each
 [**ssoAppsGet**](DefaultApi.md#ssoAppsGet) | **GET** /sso/apps | Get a list of the SSO apps
 [**ssoAppsIdGet**](DefaultApi.md#ssoAppsIdGet) | **GET** /sso/apps/{id} | Get a single SSO App
 [**supportConnectionGuideIdGet**](DefaultApi.md#supportConnectionGuideIdGet) | **GET** /support/{connection}/guide/{id} | Get a guide based on its connection reference
+[**testimonialsGet**](DefaultApi.md#testimonialsGet) | **GET** /testimonials | 
+[**usersIdTestimonialsGet**](DefaultApi.md#usersIdTestimonialsGet) | **GET** /users/{id}/testimonials | 
 [**usersRefGet**](DefaultApi.md#usersRefGet) | **GET** /users/{ref} | Get a user record
 [**valuationsAnalyzePost**](DefaultApi.md#valuationsAnalyzePost) | **POST** /valuations/analyze | Get a ValueAnalysis for the given address or place
 [**valuationsReportsDynamicPost**](DefaultApi.md#valuationsReportsDynamicPost) | **POST** /valuations/reports/dynamic | Get a DynamicReport for the given address or place
@@ -489,6 +492,65 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **officesConnectionRefTestimonialsGet**
+> object officesConnectionRefTestimonialsGet($connection, $ref, $field, $page, $per_page)
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$connection = "connection_example"; // string | The MLS connection to query
+$ref = "ref_example"; // string | The reference value of the Office
+$field = "field_example"; // string | The field to query; defaults to mls_key
+$page = 56; // int | The page number of the results you wish to load
+$per_page = 56; // int | The page number of the results you wish to load
+
+try {
+    $result = $apiInstance->officesConnectionRefTestimonialsGet($connection, $ref, $field, $page, $per_page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->officesConnectionRefTestimonialsGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **connection** | **string**| The MLS connection to query |
+ **ref** | **string**| The reference value of the Office |
+ **field** | **string**| The field to query; defaults to mls_key | [optional]
+ **page** | **int**| The page number of the results you wish to load | [optional]
+ **per_page** | **int**| The page number of the results you wish to load | [optional]
+
+### Return type
+
+**object**
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **officesGet**
 > \Redwood\Models\Office[] officesGet()
 
@@ -777,6 +839,114 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Redwood\Models\Guide**](../Model/Guide.md)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **testimonialsGet**
+> object testimonialsGet($page, $per_page)
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$page = 56; // int | The page number of the results you wish to load
+$per_page = 56; // int | The page number of the results you wish to load
+
+try {
+    $result = $apiInstance->testimonialsGet($page, $per_page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->testimonialsGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**| The page number of the results you wish to load | [optional]
+ **per_page** | **int**| The page number of the results you wish to load | [optional]
+
+### Return type
+
+**object**
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **usersIdTestimonialsGet**
+> object usersIdTestimonialsGet($id, $page, $per_page)
+
+
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | The ID of the User you wish to load testimonials for
+$page = 56; // int | The page number of the results you wish to load
+$per_page = 56; // int | The page number of the results you wish to load
+
+try {
+    $result = $apiInstance->usersIdTestimonialsGet($id, $page, $per_page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->usersIdTestimonialsGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the User you wish to load testimonials for |
+ **page** | **int**| The page number of the results you wish to load | [optional]
+ **per_page** | **int**| The page number of the results you wish to load | [optional]
+
+### Return type
+
+**object**
 
 ### Authorization
 

@@ -232,6 +232,28 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$connection = "connection_example"; // string | The MLS connection to query
+$ref = "ref_example"; // string | The reference value of the Office
+$field = "field_example"; // string | The field to query; defaults to mls_key
+$page = 56; // int | The page number of the results you wish to load
+$per_page = 56; // int | The page number of the results you wish to load
+
+try {
+    $result = $apiInstance->officesConnectionRefTestimonialsGet($connection, $ref, $field, $page, $per_page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->officesConnectionRefTestimonialsGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
     $result = $apiInstance->officesGet();
@@ -340,6 +362,45 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$page = 56; // int | The page number of the results you wish to load
+$per_page = 56; // int | The page number of the results you wish to load
+
+try {
+    $result = $apiInstance->testimonialsGet($page, $per_page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->testimonialsGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | The ID of the User you wish to load testimonials for
+$page = 56; // int | The page number of the results you wish to load
+$per_page = 56; // int | The page number of the results you wish to load
+
+try {
+    $result = $apiInstance->usersIdTestimonialsGet($id, $page, $per_page);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->usersIdTestimonialsGet: ', $e->getMessage(), PHP_EOL;
+}
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $ref = 56; // int | The reference value to query for
 $field = "field_example"; // string | The field to query against
 
@@ -424,12 +485,15 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listingsHashedIdGet**](docs/Api/DefaultApi.md#listingshashedidget) | **GET** /listings/{hashedId} | Get a Listing object by hashed ID
 *DefaultApi* | [**meGet**](docs/Api/DefaultApi.md#meget) | **GET** /me | Get data about the authenticated user
 *DefaultApi* | [**officesConnectionRefStatsGet**](docs/Api/DefaultApi.md#officesconnectionrefstatsget) | **GET** /offices/{connection}/{ref}/stats | 
+*DefaultApi* | [**officesConnectionRefTestimonialsGet**](docs/Api/DefaultApi.md#officesconnectionreftestimonialsget) | **GET** /offices/{connection}/{ref}/testimonials | 
 *DefaultApi* | [**officesGet**](docs/Api/DefaultApi.md#officesget) | **GET** /offices | 
 *DefaultApi* | [**officesStatsGet**](docs/Api/DefaultApi.md#officesstatsget) | **GET** /offices/stats | 
 *DefaultApi* | [**rolesGet**](docs/Api/DefaultApi.md#rolesget) | **GET** /roles | Get a list of all Roles and counts of Users in each
 *DefaultApi* | [**ssoAppsGet**](docs/Api/DefaultApi.md#ssoappsget) | **GET** /sso/apps | Get a list of the SSO apps
 *DefaultApi* | [**ssoAppsIdGet**](docs/Api/DefaultApi.md#ssoappsidget) | **GET** /sso/apps/{id} | Get a single SSO App
 *DefaultApi* | [**supportConnectionGuideIdGet**](docs/Api/DefaultApi.md#supportconnectionguideidget) | **GET** /support/{connection}/guide/{id} | Get a guide based on its connection reference
+*DefaultApi* | [**testimonialsGet**](docs/Api/DefaultApi.md#testimonialsget) | **GET** /testimonials | 
+*DefaultApi* | [**usersIdTestimonialsGet**](docs/Api/DefaultApi.md#usersidtestimonialsget) | **GET** /users/{id}/testimonials | 
 *DefaultApi* | [**usersRefGet**](docs/Api/DefaultApi.md#usersrefget) | **GET** /users/{ref} | Get a user record
 *DefaultApi* | [**valuationsAnalyzePost**](docs/Api/DefaultApi.md#valuationsanalyzepost) | **POST** /valuations/analyze | Get a ValueAnalysis for the given address or place
 *DefaultApi* | [**valuationsReportsDynamicPost**](docs/Api/DefaultApi.md#valuationsreportsdynamicpost) | **POST** /valuations/reports/dynamic | Get a DynamicReport for the given address or place
@@ -449,6 +513,7 @@ Class | Method | HTTP request | Description
  - [Place](docs/Model/Place.md)
  - [Role](docs/Model/Role.md)
  - [StaticReport](docs/Model/StaticReport.md)
+ - [Testimonial](docs/Model/Testimonial.md)
  - [Topic](docs/Model/Topic.md)
  - [User](docs/Model/User.md)
  - [ValueAnalysis](docs/Model/ValueAnalysis.md)
