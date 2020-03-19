@@ -467,6 +467,25 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsReportsStaticPost: ', $e->getMessage(), PHP_EOL;
 }
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$address = "address_example"; // string | 
+$place_id = "place_id_example"; // string | 
+
+try {
+    $result = $apiInstance->valuationsValuePost($address, $place_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->valuationsValuePost: ', $e->getMessage(), PHP_EOL;
+}
 ?>
 ```
 
@@ -498,6 +517,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**valuationsAnalyzePost**](docs/Api/DefaultApi.md#valuationsanalyzepost) | **POST** /valuations/analyze | Get a ValueAnalysis for the given address or place
 *DefaultApi* | [**valuationsReportsDynamicPost**](docs/Api/DefaultApi.md#valuationsreportsdynamicpost) | **POST** /valuations/reports/dynamic | Get a DynamicReport for the given address or place
 *DefaultApi* | [**valuationsReportsStaticPost**](docs/Api/DefaultApi.md#valuationsreportsstaticpost) | **POST** /valuations/reports/static | Get a StaticReport for the given address or place
+*DefaultApi* | [**valuationsValuePost**](docs/Api/DefaultApi.md#valuationsvaluepost) | **POST** /valuations/value | Get the Mean Valuation for the given address or place
 
 ## Documentation For Models
 

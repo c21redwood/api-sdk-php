@@ -26,6 +26,7 @@ Method | HTTP request | Description
 [**valuationsAnalyzePost**](DefaultApi.md#valuationsAnalyzePost) | **POST** /valuations/analyze | Get a ValueAnalysis for the given address or place
 [**valuationsReportsDynamicPost**](DefaultApi.md#valuationsReportsDynamicPost) | **POST** /valuations/reports/dynamic | Get a DynamicReport for the given address or place
 [**valuationsReportsStaticPost**](DefaultApi.md#valuationsReportsStaticPost) | **POST** /valuations/reports/static | Get a StaticReport for the given address or place
+[**valuationsValuePost**](DefaultApi.md#valuationsValuePost) | **POST** /valuations/value | Get the Mean Valuation for the given address or place
 
 # **contactsEmailGet**
 > \Redwood\Models\Contact contactsEmailGet($email)
@@ -1159,6 +1160,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Redwood\Models\StaticReport**](../Model/StaticReport.md)
+
+### Authorization
+
+[passport](../../README.md#passport)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **valuationsValuePost**
+> object valuationsValuePost($address, $place_id)
+
+Get the Mean Valuation for the given address or place
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: passport
+$config = Redwood\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$apiInstance = new Redwood\Client\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$address = "address_example"; // string | 
+$place_id = "place_id_example"; // string | 
+
+try {
+    $result = $apiInstance->valuationsValuePost($address, $place_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->valuationsValuePost: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **address** | [**string**](../Model/.md)|  | [optional]
+ **place_id** | [**string**](../Model/.md)|  | [optional]
+
+### Return type
+
+**object**
 
 ### Authorization
 
