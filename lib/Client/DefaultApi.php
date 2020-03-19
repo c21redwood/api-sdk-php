@@ -5470,16 +5470,15 @@ class DefaultApi
      *
      * Get a ValueAnalysis for the given address or place
      *
-     * @param  string $address address (optional)
-     * @param  string $place_id place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Redwood\Models\ValueAnalysis
      */
-    public function valuationsAnalyzePost($address = null, $place_id = null)
+    public function valuationsAnalyzePost($body = null)
     {
-        list($response) = $this->valuationsAnalyzePostWithHttpInfo($address, $place_id);
+        list($response) = $this->valuationsAnalyzePostWithHttpInfo($body);
         return $response;
     }
 
@@ -5488,17 +5487,16 @@ class DefaultApi
      *
      * Get a ValueAnalysis for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Redwood\Models\ValueAnalysis, HTTP status code, HTTP response headers (array of strings)
      */
-    public function valuationsAnalyzePostWithHttpInfo($address = null, $place_id = null)
+    public function valuationsAnalyzePostWithHttpInfo($body = null)
     {
         $returnType = '\Redwood\Models\ValueAnalysis';
-        $request = $this->valuationsAnalyzePostRequest($address, $place_id);
+        $request = $this->valuationsAnalyzePostRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5580,15 +5578,14 @@ class DefaultApi
      *
      * Get a ValueAnalysis for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsAnalyzePostAsync($address = null, $place_id = null)
+    public function valuationsAnalyzePostAsync($body = null)
     {
-        return $this->valuationsAnalyzePostAsyncWithHttpInfo($address, $place_id)
+        return $this->valuationsAnalyzePostAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5601,16 +5598,15 @@ class DefaultApi
      *
      * Get a ValueAnalysis for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsAnalyzePostAsyncWithHttpInfo($address = null, $place_id = null)
+    public function valuationsAnalyzePostAsyncWithHttpInfo($body = null)
     {
         $returnType = '\Redwood\Models\ValueAnalysis';
-        $request = $this->valuationsAnalyzePostRequest($address, $place_id);
+        $request = $this->valuationsAnalyzePostRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5652,13 +5648,12 @@ class DefaultApi
     /**
      * Create request for operation 'valuationsAnalyzePost'
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function valuationsAnalyzePostRequest($address = null, $place_id = null)
+    protected function valuationsAnalyzePostRequest($body = null)
     {
 
         $resourcePath = '/valuations/analyze';
@@ -5670,16 +5665,11 @@ class DefaultApi
 
 
 
-        // form params
-        if ($address !== null) {
-            $formParams['address'] = ObjectSerializer::toFormValue($address);
-        }
-        // form params
-        if ($place_id !== null) {
-            $formParams['place_id'] = ObjectSerializer::toFormValue($place_id);
-        }
         // body params
         $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -5688,7 +5678,7 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['*/*'],
-                ['multipart/form-data']
+                ['text/plain', 'application/json']
             );
         }
 
@@ -5751,16 +5741,15 @@ class DefaultApi
      *
      * Get a DynamicReport for the given address or place
      *
-     * @param  string $address address (optional)
-     * @param  string $place_id place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Redwood\Models\DynamicReport
      */
-    public function valuationsReportsDynamicPost($address = null, $place_id = null)
+    public function valuationsReportsDynamicPost($body = null)
     {
-        list($response) = $this->valuationsReportsDynamicPostWithHttpInfo($address, $place_id);
+        list($response) = $this->valuationsReportsDynamicPostWithHttpInfo($body);
         return $response;
     }
 
@@ -5769,17 +5758,16 @@ class DefaultApi
      *
      * Get a DynamicReport for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Redwood\Models\DynamicReport, HTTP status code, HTTP response headers (array of strings)
      */
-    public function valuationsReportsDynamicPostWithHttpInfo($address = null, $place_id = null)
+    public function valuationsReportsDynamicPostWithHttpInfo($body = null)
     {
         $returnType = '\Redwood\Models\DynamicReport';
-        $request = $this->valuationsReportsDynamicPostRequest($address, $place_id);
+        $request = $this->valuationsReportsDynamicPostRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5861,15 +5849,14 @@ class DefaultApi
      *
      * Get a DynamicReport for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsReportsDynamicPostAsync($address = null, $place_id = null)
+    public function valuationsReportsDynamicPostAsync($body = null)
     {
-        return $this->valuationsReportsDynamicPostAsyncWithHttpInfo($address, $place_id)
+        return $this->valuationsReportsDynamicPostAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5882,16 +5869,15 @@ class DefaultApi
      *
      * Get a DynamicReport for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsReportsDynamicPostAsyncWithHttpInfo($address = null, $place_id = null)
+    public function valuationsReportsDynamicPostAsyncWithHttpInfo($body = null)
     {
         $returnType = '\Redwood\Models\DynamicReport';
-        $request = $this->valuationsReportsDynamicPostRequest($address, $place_id);
+        $request = $this->valuationsReportsDynamicPostRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5933,13 +5919,12 @@ class DefaultApi
     /**
      * Create request for operation 'valuationsReportsDynamicPost'
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function valuationsReportsDynamicPostRequest($address = null, $place_id = null)
+    protected function valuationsReportsDynamicPostRequest($body = null)
     {
 
         $resourcePath = '/valuations/reports/dynamic';
@@ -5951,16 +5936,11 @@ class DefaultApi
 
 
 
-        // form params
-        if ($address !== null) {
-            $formParams['address'] = ObjectSerializer::toFormValue($address);
-        }
-        // form params
-        if ($place_id !== null) {
-            $formParams['place_id'] = ObjectSerializer::toFormValue($place_id);
-        }
         // body params
         $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -5969,7 +5949,7 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['*/*'],
-                ['multipart/form-data']
+                ['text/plain', 'application/json']
             );
         }
 
@@ -6032,16 +6012,15 @@ class DefaultApi
      *
      * Get a StaticReport for the given address or place
      *
-     * @param  string $address address (optional)
-     * @param  string $place_id place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Redwood\Models\StaticReport
      */
-    public function valuationsReportsStaticPost($address = null, $place_id = null)
+    public function valuationsReportsStaticPost($body = null)
     {
-        list($response) = $this->valuationsReportsStaticPostWithHttpInfo($address, $place_id);
+        list($response) = $this->valuationsReportsStaticPostWithHttpInfo($body);
         return $response;
     }
 
@@ -6050,17 +6029,16 @@ class DefaultApi
      *
      * Get a StaticReport for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Redwood\Models\StaticReport, HTTP status code, HTTP response headers (array of strings)
      */
-    public function valuationsReportsStaticPostWithHttpInfo($address = null, $place_id = null)
+    public function valuationsReportsStaticPostWithHttpInfo($body = null)
     {
         $returnType = '\Redwood\Models\StaticReport';
-        $request = $this->valuationsReportsStaticPostRequest($address, $place_id);
+        $request = $this->valuationsReportsStaticPostRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6142,15 +6120,14 @@ class DefaultApi
      *
      * Get a StaticReport for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsReportsStaticPostAsync($address = null, $place_id = null)
+    public function valuationsReportsStaticPostAsync($body = null)
     {
-        return $this->valuationsReportsStaticPostAsyncWithHttpInfo($address, $place_id)
+        return $this->valuationsReportsStaticPostAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6163,16 +6140,15 @@ class DefaultApi
      *
      * Get a StaticReport for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsReportsStaticPostAsyncWithHttpInfo($address = null, $place_id = null)
+    public function valuationsReportsStaticPostAsyncWithHttpInfo($body = null)
     {
         $returnType = '\Redwood\Models\StaticReport';
-        $request = $this->valuationsReportsStaticPostRequest($address, $place_id);
+        $request = $this->valuationsReportsStaticPostRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6214,13 +6190,12 @@ class DefaultApi
     /**
      * Create request for operation 'valuationsReportsStaticPost'
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function valuationsReportsStaticPostRequest($address = null, $place_id = null)
+    protected function valuationsReportsStaticPostRequest($body = null)
     {
 
         $resourcePath = '/valuations/reports/static';
@@ -6232,16 +6207,11 @@ class DefaultApi
 
 
 
-        // form params
-        if ($address !== null) {
-            $formParams['address'] = ObjectSerializer::toFormValue($address);
-        }
-        // form params
-        if ($place_id !== null) {
-            $formParams['place_id'] = ObjectSerializer::toFormValue($place_id);
-        }
         // body params
         $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -6250,7 +6220,7 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['*/*'],
-                ['multipart/form-data']
+                ['text/plain', 'application/json']
             );
         }
 
@@ -6313,16 +6283,15 @@ class DefaultApi
      *
      * Get the Mean Valuation for the given address or place
      *
-     * @param  string $address address (optional)
-     * @param  string $place_id place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return object
      */
-    public function valuationsValuePost($address = null, $place_id = null)
+    public function valuationsValuePost($body = null)
     {
-        list($response) = $this->valuationsValuePostWithHttpInfo($address, $place_id);
+        list($response) = $this->valuationsValuePostWithHttpInfo($body);
         return $response;
     }
 
@@ -6331,17 +6300,16 @@ class DefaultApi
      *
      * Get the Mean Valuation for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \Redwood\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of object, HTTP status code, HTTP response headers (array of strings)
      */
-    public function valuationsValuePostWithHttpInfo($address = null, $place_id = null)
+    public function valuationsValuePostWithHttpInfo($body = null)
     {
         $returnType = 'object';
-        $request = $this->valuationsValuePostRequest($address, $place_id);
+        $request = $this->valuationsValuePostRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6423,15 +6391,14 @@ class DefaultApi
      *
      * Get the Mean Valuation for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsValuePostAsync($address = null, $place_id = null)
+    public function valuationsValuePostAsync($body = null)
     {
-        return $this->valuationsValuePostAsyncWithHttpInfo($address, $place_id)
+        return $this->valuationsValuePostAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6444,16 +6411,15 @@ class DefaultApi
      *
      * Get the Mean Valuation for the given address or place
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function valuationsValuePostAsyncWithHttpInfo($address = null, $place_id = null)
+    public function valuationsValuePostAsyncWithHttpInfo($body = null)
     {
         $returnType = 'object';
-        $request = $this->valuationsValuePostRequest($address, $place_id);
+        $request = $this->valuationsValuePostRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6495,13 +6461,12 @@ class DefaultApi
     /**
      * Create request for operation 'valuationsValuePost'
      *
-     * @param  string $address (optional)
-     * @param  string $place_id (optional)
+     * @param  object $body The place to query for, expressed either by an address or by an ID; you only need to provide on (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function valuationsValuePostRequest($address = null, $place_id = null)
+    protected function valuationsValuePostRequest($body = null)
     {
 
         $resourcePath = '/valuations/value';
@@ -6513,16 +6478,11 @@ class DefaultApi
 
 
 
-        // form params
-        if ($address !== null) {
-            $formParams['address'] = ObjectSerializer::toFormValue($address);
-        }
-        // form params
-        if ($place_id !== null) {
-            $formParams['place_id'] = ObjectSerializer::toFormValue($place_id);
-        }
         // body params
         $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -6531,7 +6491,7 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['*/*'],
-                ['multipart/form-data']
+                ['text/plain', 'application/json']
             );
         }
 

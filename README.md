@@ -420,11 +420,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsAnalyzePost($address, $place_id);
+    $result = $apiInstance->valuationsAnalyzePost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsAnalyzePost: ', $e->getMessage(), PHP_EOL;
@@ -439,11 +438,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsReportsDynamicPost($address, $place_id);
+    $result = $apiInstance->valuationsReportsDynamicPost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsReportsDynamicPost: ', $e->getMessage(), PHP_EOL;
@@ -458,11 +456,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsReportsStaticPost($address, $place_id);
+    $result = $apiInstance->valuationsReportsStaticPost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsReportsStaticPost: ', $e->getMessage(), PHP_EOL;
@@ -477,11 +474,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsValuePost($address, $place_id);
+    $result = $apiInstance->valuationsValuePost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsValuePost: ', $e->getMessage(), PHP_EOL;

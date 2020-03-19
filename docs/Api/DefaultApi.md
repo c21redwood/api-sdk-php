@@ -1014,7 +1014,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **valuationsAnalyzePost**
-> \Redwood\Models\ValueAnalysis valuationsAnalyzePost($address, $place_id)
+> \Redwood\Models\ValueAnalysis valuationsAnalyzePost($body)
 
 Get a ValueAnalysis for the given address or place
 
@@ -1032,11 +1032,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsAnalyzePost($address, $place_id);
+    $result = $apiInstance->valuationsAnalyzePost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsAnalyzePost: ', $e->getMessage(), PHP_EOL;
@@ -1048,8 +1047,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **address** | [**string**](../Model/.md)|  | [optional]
- **place_id** | [**string**](../Model/.md)|  | [optional]
+ **body** | [**object**](../Model/object.md)| The place to query for, expressed either by an address or by an ID; you only need to provide on | [optional]
 
 ### Return type
 
@@ -1061,13 +1059,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: text/plain, application/json
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **valuationsReportsDynamicPost**
-> \Redwood\Models\DynamicReport valuationsReportsDynamicPost($address, $place_id)
+> \Redwood\Models\DynamicReport valuationsReportsDynamicPost($body)
 
 Get a DynamicReport for the given address or place
 
@@ -1085,11 +1083,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsReportsDynamicPost($address, $place_id);
+    $result = $apiInstance->valuationsReportsDynamicPost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsReportsDynamicPost: ', $e->getMessage(), PHP_EOL;
@@ -1101,8 +1098,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **address** | [**string**](../Model/.md)|  | [optional]
- **place_id** | [**string**](../Model/.md)|  | [optional]
+ **body** | [**object**](../Model/object.md)| The place to query for, expressed either by an address or by an ID; you only need to provide on | [optional]
 
 ### Return type
 
@@ -1114,13 +1110,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: text/plain, application/json
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **valuationsReportsStaticPost**
-> \Redwood\Models\StaticReport valuationsReportsStaticPost($address, $place_id)
+> \Redwood\Models\StaticReport valuationsReportsStaticPost($body)
 
 Get a StaticReport for the given address or place
 
@@ -1138,11 +1134,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsReportsStaticPost($address, $place_id);
+    $result = $apiInstance->valuationsReportsStaticPost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsReportsStaticPost: ', $e->getMessage(), PHP_EOL;
@@ -1154,8 +1149,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **address** | [**string**](../Model/.md)|  | [optional]
- **place_id** | [**string**](../Model/.md)|  | [optional]
+ **body** | [**object**](../Model/object.md)| The place to query for, expressed either by an address or by an ID; you only need to provide on | [optional]
 
 ### Return type
 
@@ -1167,13 +1161,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: text/plain, application/json
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **valuationsValuePost**
-> object valuationsValuePost($address, $place_id)
+> object valuationsValuePost($body)
 
 Get the Mean Valuation for the given address or place
 
@@ -1191,11 +1185,10 @@ $apiInstance = new Redwood\Client\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$address = "address_example"; // string | 
-$place_id = "place_id_example"; // string | 
+$body = new \stdClass; // object | The place to query for, expressed either by an address or by an ID; you only need to provide on
 
 try {
-    $result = $apiInstance->valuationsValuePost($address, $place_id);
+    $result = $apiInstance->valuationsValuePost($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->valuationsValuePost: ', $e->getMessage(), PHP_EOL;
@@ -1207,8 +1200,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **address** | [**string**](../Model/.md)|  | [optional]
- **place_id** | [**string**](../Model/.md)|  | [optional]
+ **body** | [**object**](../Model/object.md)| The place to query for, expressed either by an address or by an ID; you only need to provide on | [optional]
 
 ### Return type
 
@@ -1220,7 +1212,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: text/plain, application/json
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
